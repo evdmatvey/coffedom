@@ -8,9 +8,26 @@ body {
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
   font-weight: 400;
+  background: #303030;
 }
 
 a {
   color: inherit;
+  display: block;
   text-decoration: none;
+}
+
+button {
+  font-family: 'Nunito', sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1430px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
 }

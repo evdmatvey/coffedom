@@ -1,0 +1,154 @@
+.intro__slider {
+  &-wrapper {
+    position: relative;
+  }
+
+  &-prev,
+  &-next {
+    background: #2fd9b9;
+    border-radius: 15px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    display: block;
+    transform: translateY(-50%);
+    border: none;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &-prev {
+    left: 0;
+  }
+  &-next {
+    right: 0;
+  }
+
+  &__slide {
+    font-size: 100px;
+    color: #fff;
+  }
+}
+
+.swiper,
+.swiper-wrapper {
+  width: 1200px !important;
+  color: #fff;
+}
+
+.intro__slide {
+  display: flex;
+  gap: 70px;
+
+  &-main {
+    padding: 30px;
+    width: 730px;
+    height: 400px;
+    background: rgba(48, 48, 48, 0.85);
+    border-radius: 5px;
+  }
+
+  &-promo {
+    width: 400px;
+    height: 400px;
+    background: rgba(48, 48, 48, 0.85);
+    border-radius: 5px;
+    overflow: hidden;
+
+    img {
+      border-bottom: 1px solid #2fd9b9;
+    }
+  }
+}
+
+.intro__main {
+  &-title {
+    margin-bottom: 15px;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 44px;
+    text-transform: uppercase;
+    color: #2fd9b9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &-subtitle {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #ffffff;
+  }
+
+  &-wrapper {
+    padding: 0 10px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+      max-width: 340px;
+    }
+
+    li {
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
+
+.intro__promo {
+  &-title {
+    margin: 15px 0;
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #ffffff;
+  }
+
+  &-desc {
+    max-width: 340px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  &-link {
+    width: 200px;
+    margin: 0 auto;
+    padding: 6px 53px 7px 53px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #2fd9b9;
+    background-color: transparent;
+    border-radius: 12px;
+    transition: all 0.2s ease-in-out;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #2fd9b9;
+    }
+  }
+}
