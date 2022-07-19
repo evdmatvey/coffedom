@@ -7,6 +7,7 @@
   &-next {
     background: #2fd9b9;
     border-radius: 15px;
+    border: 2px solid transparent;
     width: 50px;
     height: 50px;
     position: absolute;
@@ -19,6 +20,20 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    svg path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover {
+      background-color: transparent;
+      border: 2px solid #2fd9b9;
+
+      svg path {
+        fill: #fff;
+      }
+    }
   }
 
   &-prev {
@@ -34,8 +49,8 @@
   }
 }
 
-.swiper,
-.swiper-wrapper {
+.intro .swiper,
+.intro .swiper-wrapper {
   width: 1200px !important;
   color: #fff;
 }
@@ -147,8 +162,17 @@
     text-align: center;
     color: #ffffff;
 
+    svg path {
+      transition: all 0.2s ease-in-out;
+    }
+
     &:hover {
       background-color: #2fd9b9;
+      color: #303030;
+
+      svg path {
+        fill: #303030;
+      }
     }
   }
 }

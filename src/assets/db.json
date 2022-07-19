@@ -1,0 +1,234 @@
+{
+  "products": [
+    {
+      "id": 0,
+      "title": "Капучино",
+      "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+      "categoryId": 1,
+      "settings": {
+        "milk": [
+          {
+            "name": "молоко",
+            "price": 0
+          },
+          {
+            "name": "двойное молоко",
+            "price": 10
+          }
+        ],
+        "sizes": [
+          {
+            "name": "250 мл.",
+            "price": 0
+          },
+          {
+            "name": "350 мл.",
+            "price": 20
+          },
+          {
+            "name": "450 мл.",
+            "price": 40
+          }
+        ],
+        "ingredients": [
+          {
+            "name": "сахар",
+            "price": 0
+          },
+          {
+            "name": "шоколад",
+            "price": 0
+          },
+          {
+            "name": "сироп",
+            "price": 0
+          }
+        ]
+      },
+      "price": 120
+    },
+    {
+      "id": 1,
+      "title": "Латте",
+      "imageUrl": "https://i.ibb.co/wYDc3Lw/2.png",
+      "categoryId": 1,
+      "settings": {
+        "milk": [
+          {
+            "name": "молоко",
+            "price": 0
+          }
+        ],
+        "sizes": [
+          {
+            "name": "250 мл.",
+            "price": 0
+          },
+          {
+            "name": "350 мл.",
+            "price": 20
+          },
+          {
+            "name": "450 мл.",
+            "price": 40
+          }
+        ],
+        "ingredients": [
+          {
+            "name": "сахар",
+            "price": 0
+          },
+          {
+            "name": "шоколад",
+            "price": 0
+          },
+          {
+            "name": "сироп",
+            "price": 0
+          }
+        ]
+      },
+      "price": 124
+    },
+    {
+      "id": 2,
+      "title": "Американо",
+      "imageUrl": "https://i.ibb.co/80RJvHN/3.png",
+      "categoryId": 1,
+      "settings": {
+        "milk": [
+          {
+            "name": "молоко",
+            "price": 0
+          },
+          {
+            "name": "двойное молоко",
+            "price": 10
+          }
+        ],
+        "sizes": [
+          {
+            "name": "250 мл.",
+            "price": 0
+          },
+          {
+            "name": "350 мл.",
+            "price": 20
+          },
+          {
+            "name": "450 мл.",
+            "price": 40
+          }
+        ],
+        "ingredients": [
+          {
+            "name": "сахар",
+            "price": 0
+          },
+          {
+            "name": "шоколад",
+            "price": 0
+          },
+          {
+            "name": "сироп",
+            "price": 0
+          }
+        ]
+      },
+      "price": 140
+    },
+    {
+      "id": 3,
+      "title": "Мокко",
+      "imageUrl": "https://i.ibb.co/VV42sqS/4.png",
+      "categoryId": 1,
+      "settings": {
+        "milk": [
+          {
+            "name": "молоко",
+            "price": 0
+          },
+          {
+            "name": "двойное молоко",
+            "price": 10
+          }
+        ],
+        "sizes": [
+          {
+            "name": "250 мл.",
+            "price": 0
+          },
+          {
+            "name": "350 мл.",
+            "price": 20
+          },
+          {
+            "name": "450 мл.",
+            "price": 40
+          }
+        ],
+        "ingredients": [
+          {
+            "name": "сахар",
+            "price": 0
+          },
+          {
+            "name": "шоколад",
+            "price": 0
+          },
+          {
+            "name": "сироп",
+            "price": 0
+          }
+        ]
+      },
+      "price": 112
+    },
+    {
+      "id": 4,
+      "title": "Флэт уайт",
+      "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+      "settings": {
+        "milk": [
+          {
+            "name": "молоко",
+            "price": 0
+          },
+          {
+            "name": "двойное молоко",
+            "price": 10
+          }
+        ],
+        "sizes": [
+          {
+            "name": "250 мл.",
+            "price": 0
+          },
+          {
+            "name": "350 мл.",
+            "price": 20
+          },
+          {
+            "name": "450 мл.",
+            "price": 40
+          }
+        ],
+        "ingredients": [
+          {
+            "name": "сахар",
+            "price": 0
+          },
+          {
+            "name": "шоколад",
+            "price": 0
+          },
+          {
+            "name": "сироп",
+            "price": 0
+          }
+        ]
+      },
+      "price": 122
+    }
+  ]
+}
