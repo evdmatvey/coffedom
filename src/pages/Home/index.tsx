@@ -1,13 +1,21 @@
 import React from 'react';
 import CatalogSlider from '../../components/CatalogSlider';
 import IntroSlider from '../../components/IntroSlider';
+import PresetCard from '../../components/PresetCard';
+import PromoCard from '../../components/PromoCard';
 import Title from '../../components/UI/Title';
+
+import { useGetPresetsQuery } from '../../store/services/presets';
 import { useGetProductsQuery } from '../../store/services/product';
+import { useGetPromosQuery } from '../../store/services/promo';
 
 import './Home.scss';
 
 const Home = () => {
   const { data: products } = useGetProductsQuery();
+  const { data: promos } = useGetPromosQuery();
+  const { data: presets } = useGetPresetsQuery();
+
   return (
     <>
       <div className="intro">
@@ -91,6 +99,22 @@ const Home = () => {
         <div className="container">
           <Title title="наши товары" link="Каталог" />
           {products && <CatalogSlider products={products} />}
+        </div>
+      </div>
+      <div className="promo-block">
+        <div className="container">
+          <Title title="Акции" link="Акции" />
+          <div className="promo-block__wrapper">
+            {promos && promos.map((promo) => <PromoCard key={promo.id} promo={promo} />)}
+          </div>
+        </div>
+      </div>
+      <div className="presets-block">
+        <div className="container">
+          <Title title="Готовые наборы" link="Наборы" />
+          <div className="presets-block__wrapper">
+            {presets && presets.map((preset) => <PresetCard key={preset.id} preset={preset} />)}
+          </div>
         </div>
       </div>
     </>

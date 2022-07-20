@@ -229,6 +229,198 @@
         ]
       },
       "price": 122
+    },
+    {
+      "id": 5,
+      "title": "Булочка с корицей",
+      "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+      "settings": {
+        "milk": [
+          {
+            "name": "молоко",
+            "price": 0
+          },
+          {
+            "name": "двойное молоко",
+            "price": 10
+          }
+        ],
+        "sizes": [
+          {
+            "name": "250 мл.",
+            "price": 0
+          },
+          {
+            "name": "350 мл.",
+            "price": 20
+          },
+          {
+            "name": "450 мл.",
+            "price": 40
+          }
+        ],
+        "ingredients": [
+          {
+            "name": "ваниль",
+            "price": 0
+          },
+          {
+            "name": "шоколад",
+            "price": 0
+          },
+          {
+            "name": "сироп",
+            "price": 0
+          }
+        ]
+      },
+      "price": 122
+    }
+  ],
+  "promo": [
+    {
+      "id": 0,
+      "title": "С 6-7 утра двойные бонусы",
+      "text": "Каждый день вы можете получить двойные бонусы за любые заказы на нашем сайте",
+      "imageUrl": "https://i.ibb.co/2FrW4Mq/1.png"
+    },
+    {
+      "id": 1,
+      "title": "Двойные бонусы на первый заказ",
+      "text": "При первом заказе на нашем сайте вы получите двойне бонусы",
+      "imageUrl": "https://i.ibb.co/wrQDQk7/2.png"
+    },
+    {
+      "id": 2,
+      "title": "Скидка 10% на всё за лучший набор",
+      "text": "Каждую неделю мы выбираем из ваших наборов лучший по нашему мнению и даём скидку 10% на 30 дней",
+      "imageUrl": "https://i.ibb.co/prDS3Kn/3.png"
+    },
+    {
+      "id": 3,
+      "title": "500 баллов за 10 заказов",
+      "text": "За каждый десятый заказ вы получаете 500 бонусных баллов",
+      "imageUrl": "https://i.ibb.co/LPQVhVp/4.png"
+    },
+    {
+      "id": 4,
+      "title": "100 бонусов за первый набор",
+      "text": "Создайте свой первый набор и получите 100 бонусов",
+      "imageUrl": "https://i.ibb.co/Pz0JT2Y/5.png"
+    },
+    {
+      "id": 5,
+      "title": "Скидка 20% при заказе двух больших кофе",
+      "text": "Закажите два больших кофе (450 мл) вместе и получите скидку 20% на всю покупку",
+      "imageUrl": "https://i.ibb.co/fnhKcPZ/6.png"
+    },
+    {
+      "id": 6,
+      "title": "-12% каждый четверг",
+      "text": "Каждый четверг вы получаете скидку 12% на один заказ",
+      "imageUrl": "https://i.ibb.co/1JG508n/7.png"
+    },
+    {
+      "id": 7,
+      "title": "+ 10% баллов за 3 выпечки в заказе",
+      "text": "За каждый заказ вы получаете определённое количество бонусных баллов, если в заказе есть три и более элементов выпечки, то вы получите 110% баллов за заказ",
+      "imageUrl": "https://i.ibb.co/GxvpLtj/8.png"
+    }
+  ],
+  "presets": [
+    {
+      "id": 0,
+      "title": "Доброе утро",
+      "popular": true,
+      "ordinary": {
+        "items": [
+          {
+            "id": 0,
+            "title": "Капучино",
+            "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+            "count": 2,
+            "size": "350 мл."
+          },
+          {
+            "id": 5,
+            "title": "Булочка с корицей",
+            "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+            "count": 1,
+            "size": "120 г."
+          }
+        ],
+        "price": 720
+      },
+      "big": {
+        "items": [
+          {
+            "id": 0,
+            "title": "Капучино",
+            "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+            "count": 2,
+            "size": "350 мл."
+          },
+          {
+            "id": 5,
+            "title": "Булочка с корицей",
+            "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+            "count": 3,
+            "size": "120 г."
+          }
+        ],
+        "price": 910
+      },
+      "amount": [
+        [2, 1],
+        [2, 3]
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Доброе утро 2",
+      "popular": true,
+      "ordinary": {
+        "items": [
+          {
+            "id": 0,
+            "title": "Капучино",
+            "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+            "count": 2,
+            "size": "350 мл."
+          },
+          {
+            "id": 5,
+            "title": "Булочка с корицей",
+            "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+            "count": 1,
+            "size": "120 г."
+          }
+        ],
+        "price": 670
+      },
+      "big": {
+        "items": [
+          {
+            "productsId": 2,
+            "title": "Капучино",
+            "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+            "count": 2,
+            "size": "350 мл."
+          },
+          {
+            "productsId": 5,
+            "title": "Булочка с корицей",
+            "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+            "count": 3,
+            "size": "120 г."
+          }
+        ],
+        "price": 830
+      },
+      "amount": [
+        [2, 1],
+        [2, 3]
+      ]
     }
   ]
 }

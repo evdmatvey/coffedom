@@ -18,6 +18,11 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 .prev {

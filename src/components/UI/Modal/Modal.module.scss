@@ -1,0 +1,59 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background: #353535;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  h4 {
+    max-width: 285px;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 41px;
+    text-align: center;
+
+    color: #2fd9b9;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+
+  svg path {
+    transition: all 0.15s ease-in-out;
+  }
+
+  &:hover svg path {
+    fill: #ddd;
+  }
+}
+
+.desc {
+  max-width: 660px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  color: #ffffff;
+}

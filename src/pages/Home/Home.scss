@@ -49,3 +49,24 @@
   background-color: #202020;
   padding-bottom: 70px;
 }
+
+.promo-block {
+  padding-bottom: 70px;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
+
+.presets-block {
+  padding-bottom: 70px;
+  background-color: #202020;
+
+  &__wrapper {
+    display: flex;
+    gap: 20px;
+  }
+}
