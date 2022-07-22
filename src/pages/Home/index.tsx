@@ -6,13 +6,13 @@ import PromoCard from '../../components/PromoCard';
 import Title from '../../components/UI/Title';
 
 import { useGetPresetsQuery } from '../../store/services/presets';
-import { useGetProductsQuery } from '../../store/services/product';
+import { useGetProductsWithLimitQuery } from '../../store/services/product';
 import { useGetPromosQuery } from '../../store/services/promo';
 
 import './Home.scss';
 
 const Home = () => {
-  const { data: products } = useGetProductsQuery();
+  const { data: products } = useGetProductsWithLimitQuery(5);
   const { data: promos } = useGetPromosQuery();
   const { data: presets } = useGetPresetsQuery();
 

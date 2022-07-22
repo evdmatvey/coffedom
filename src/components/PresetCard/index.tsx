@@ -74,7 +74,7 @@ const PresetCard: React.FC<PresetCardProps> = ({ preset }) => {
       <div className={styles.products}>
         {activeVariant === 'ordinary' &&
           ordinary.items.map((item) => (
-            <div className={styles.item}>
+            <div key={item.id} className={styles.item}>
               <img src={item.imageUrl} alt="item" />
               <h5>{item.title}</h5>
               <p>x{item.count}</p>
@@ -83,7 +83,7 @@ const PresetCard: React.FC<PresetCardProps> = ({ preset }) => {
           ))}
         {activeVariant === 'big' &&
           big.items.map((item) => (
-            <div className={styles.item}>
+            <div key={item.id} className={styles.item}>
               <img src={item.imageUrl} alt="item" />
               <h5>{item.title}</h5>
               <p>x{item.count}</p>

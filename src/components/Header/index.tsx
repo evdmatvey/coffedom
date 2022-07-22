@@ -1,29 +1,41 @@
-import React, { FC } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import logoSvg from '../../assets/img/logo.svg';
 import './Header.scss';
 
-const Header: FC = () => {
+const Header = () => {
+  const [scrollActive, setScrollActive] = React.useState(false);
+
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setScrollActive(true);
+    } else {
+      setScrollActive(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
+
   return (
-    <header className="header">
+    <header className={scrollActive ? 'header active' : 'header'}>
       <div className="container">
         <div className="header__wrapper">
-          <a href="/" className="header__logo">
+          <Link to="/" className="header__logo">
             <img src={logoSvg} alt="CoffeDom" />
-          </a>
+          </Link>
           <nav className="header__menu">
             <ul>
               <li>
-                <a href="/">Каталог</a>
+                <Link to="/catalog">Каталог</Link>
               </li>
               <li>
-                <a href="/">О нас</a>
+                <Link to="/">О нас</Link>
               </li>
               <li>
-                <a href="/">Акции</a>
+                <Link to="/">Акции</Link>
               </li>
               <li>
-                <a href="/">Готовые наборы</a>
+                <Link to="/">Готовые наборы</Link>
               </li>
             </ul>
           </nav>

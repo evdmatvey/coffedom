@@ -1,0 +1,152 @@
+.footer {
+  padding: 30px;
+  background-color: #161616;
+  color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  gap: 90px;
+}
+
+.info {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h3 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  li a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: #a3a3a3;
+    transition: all 0.15s ease-in-out;
+
+    svg path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover {
+      color: #ddd;
+
+      svg path {
+        fill: #ddd;
+      }
+    }
+  }
+
+  .link {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-decoration-line: underline;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      color: #ddd;
+    }
+  }
+}
+
+.form {
+  h3 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  input {
+    width: 415px;
+    padding: 11px 20px;
+    background-color: transparent;
+    border: 1px solid #2fd9b9;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #ddd;
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 19px;
+      color: #a3a3a3;
+    }
+  }
+
+  textarea {
+    width: 415px;
+    height: 80px;
+    padding: 11px 20px;
+    background-color: transparent;
+    border: 1px solid #2fd9b9;
+    border-radius: 8px;
+    resize: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #ddd;
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 19px;
+      color: #a3a3a3;
+    }
+  }
+
+  button {
+    width: 200px;
+    padding: 9px 20px;
+    border: 1px solid #2fd9b9;
+    border-radius: 8px;
+    background: transparent;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      background-color: #2fd9b9;
+      color: #202020;
+    }
+  }
+}
+
+.error {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #2fd9b9;
+}
