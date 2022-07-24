@@ -1,21 +1,44 @@
 import React from 'react';
 import Filter from '../../components/FIlter';
 import ProductCard from '../../components/ProductCard';
+import ProductCardLoader from '../../components/ProductCard/ProductCardLoader';
 import Breadcrumb from '../../components/UI/Breadcrumb';
 import Dropdown from '../../components/UI/Dropdown';
 import Search from '../../components/UI/Search';
+import { getCategory, getSort } from '../../helpers';
 import { useGetProductsQuery } from '../../store/services/product';
 
 import './Catalog.scss';
 
 const Catalog = () => {
-  const { data: products } = useGetProductsQuery();
-
   const [activeSize, setActiveSize] = React.useState(0);
-  const [activeWeight, setActiveWeight] = React.useState(0);
   const [searchValue, setSearchValue] = React.useState('');
   const [activeCategory, setActiveCategory] = React.useState(0);
   const [activeSort, setActiveSort] = React.useState(0);
+
+  const category = getCategory(activeCategory);
+  const sort = getSort(activeSort);
+
+  const {
+    data: products,
+    isSuccess,
+    isLoading,
+  } = useGetProductsQuery(
+    `title_like=${searchValue}&categoryId_like=${category}&_sort=${sort}&_order=desc`,
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
+
+  const skeletons = [...new Array(4)].map((_, i) => <ProductCardLoader key={i} />);
+  const productItems =
+    products &&
+    products.map((product) => (
+      <ProductCard key={product.id} activeItem={activeSize} product={product} />
+    ));
+  const notFoundProducts = products && products.length === 0 && (
+    <div className="catalog__notfound">Таких товаров нет 😕</div>
+  );
 
   return (
     <div className="catalog">
@@ -33,19 +56,9 @@ const Catalog = () => {
                 setActiveItem={setActiveSize}
                 filters={[
                   { id: 0, text: 'Любой' },
-                  { id: 1, text: '250 мл.' },
-                  { id: 2, text: '350 мл.' },
-                  { id: 3, text: '450 мл.' },
-                ]}
-              />
-              <Filter
-                activeItem={activeWeight}
-                setActiveItem={setActiveWeight}
-                filters={[
-                  { id: 0, text: 'Любой' },
-                  { id: 1, text: '250 мл.' },
-                  { id: 2, text: '350 мл.' },
-                  { id: 3, text: '450 мл.' },
+                  { id: 1, text: '250 мл. / 90  г.' },
+                  { id: 2, text: '350 мл. / 120 г.' },
+                  { id: 3, text: '450 мл. . 160 г.' },
                 ]}
               />
             </div>
@@ -73,7 +86,7 @@ const Catalog = () => {
                 basicText="Сортировать по: "
                 items={[
                   { id: 0, text: 'популярности' },
-                  { id: 1, text: 'рэйтингу' },
+                  { id: 1, text: 'названию' },
                   { id: 2, text: 'цене' },
                 ]}
               />
@@ -83,9 +96,10 @@ const Catalog = () => {
       </div>
       <div className="container">
         <div className="catalog__wrapper">
-          {products &&
-            products.map((product) => <ProductCard key={product.id} product={product} />)}
+          {isSuccess && productItems}
+          {isLoading && skeletons}
         </div>
+        {notFoundProducts}
       </div>
     </div>
   );

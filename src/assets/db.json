@@ -5,6 +5,7 @@
       "title": "Капучино",
       "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
       "categoryId": 1,
+      "rating": 10,
       "settings": {
         "milk": [
           {
@@ -52,6 +53,7 @@
       "title": "Латте",
       "imageUrl": "https://i.ibb.co/wYDc3Lw/2.png",
       "categoryId": 1,
+      "rating": 8,
       "settings": {
         "milk": [
           {
@@ -95,6 +97,7 @@
       "title": "Американо",
       "imageUrl": "https://i.ibb.co/80RJvHN/3.png",
       "categoryId": 1,
+      "rating": 6,
       "settings": {
         "milk": [
           {
@@ -142,6 +145,7 @@
       "title": "Мокко",
       "imageUrl": "https://i.ibb.co/VV42sqS/4.png",
       "categoryId": 1,
+      "rating": 7,
       "settings": {
         "milk": [
           {
@@ -188,6 +192,8 @@
       "id": 4,
       "title": "Флэт уайт",
       "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+      "categoryId": 1,
+      "rating": 5,
       "settings": {
         "milk": [
           {
@@ -234,6 +240,8 @@
       "id": 5,
       "title": "Булочка с корицей",
       "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+      "categoryId": 2,
+      "rating": 9,
       "settings": {
         "milk": [
           {

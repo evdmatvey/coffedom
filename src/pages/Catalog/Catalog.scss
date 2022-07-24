@@ -1,6 +1,16 @@
 .catalog {
   padding-bottom: 70px;
 
+  &__notfound {
+    margin-top: 70px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    font-weight: 800;
+    color: #2fd9b9;
+  }
+
   &__wrapper {
     width: 1310px;
     margin: 0 auto;

@@ -8,11 +8,18 @@ interface ProductCardProps {
   activeItem?: number;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
+  let size = activeItem ? activeItem - 1 : 0;
+  console.log(size);
+
+  React.useEffect(() => {
+    setActiveSize(size);
+  }, [activeItem]);
+
   const { title, imageUrl, price, settings } = product;
   const [totalPrice, setTotalPrice] = React.useState(price);
   const [activeMilk, setActiveMilk] = React.useState(0);
-  const [activeSize, setActiveSize] = React.useState(0);
+  const [activeSize, setActiveSize] = React.useState(size);
   const [activeIngredient, setActiveIngredient] = React.useState(0);
   const [count, setCount] = React.useState(0);
 

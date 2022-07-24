@@ -1,15 +1,12 @@
 .filter {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
-
-  margin-bottom: 5px;
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .item {
   padding: 11px 20px;
+  height: 40px;
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
