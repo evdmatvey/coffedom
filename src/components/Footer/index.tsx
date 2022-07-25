@@ -41,7 +41,7 @@ const Footer = () => {
               <h3>Навигация</h3>
               <ul>
                 <li>
-                  <Link to="/">О нас</Link>
+                  <Link to="/about">О нас</Link>
                 </li>
                 <li>
                   <Link to="/catalog">Каталог</Link>

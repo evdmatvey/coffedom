@@ -1,0 +1,99 @@
+.contacts {
+  width: 600px;
+  height: 352px;
+  background: #202020;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.info {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.desc {
+  h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  li {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    font-size: 16px;
+    line-height: 22px;
+    color: #e5e5e5;
+    font-weight: 500;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #2fd9b9;
+    font-weight: 600;
+  }
+}
+
+.links {
+  h2 {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 33px;
+    color: #2fd9b9;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: #bdbdbd;
+    transition: all 0.15s ease-in-out;
+
+    svg path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover {
+      color: #e5e5e5;
+
+      svg path {
+        fill: #e5e5e5;
+      }
+    }
+  }
+}

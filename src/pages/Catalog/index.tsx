@@ -69,6 +69,7 @@ const Catalog = () => {
             <div className="catalog__top-item">
               <h3 className="catalog__top-title">Категории</h3>
               <Dropdown
+                key={1}
                 activeElement={activeCategory}
                 setActiveElement={setActiveCategory}
                 items={[
@@ -81,6 +82,7 @@ const Catalog = () => {
             <div className="catalog__top-item">
               <h3 className="catalog__top-title">Сортировка</h3>
               <Dropdown
+                key={0}
                 activeElement={activeSort}
                 setActiveElement={setActiveSort}
                 basicText="Сортировать по: "

@@ -10,11 +10,10 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
   let size = activeItem ? activeItem - 1 : 0;
-  console.log(size);
 
   React.useEffect(() => {
     setActiveSize(size);
-  }, [activeItem]);
+  }, [activeItem, size]);
 
   const { title, imageUrl, price, settings } = product;
   const [totalPrice, setTotalPrice] = React.useState(price);
