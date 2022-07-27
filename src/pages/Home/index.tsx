@@ -16,6 +16,10 @@ const Home = () => {
   const { data: promos } = useGetPromosWithLimitQuery(4);
   const { data: presets } = useGetPresetsWithLimitQuery(2);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="intro">

@@ -215,6 +215,7 @@ const Footer = () => {
                   {...register('email', { required: true })}
                   type="email"
                   placeholder="Ваш email"
+                  autoComplete="off"
                 />
                 <textarea {...register('text')} placeholder="Кратко опишите проблему.."></textarea>
                 <button type="submit">Отправить</button>

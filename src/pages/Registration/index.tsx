@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Breadcrumb from '../../components/UI/Breadcrumb';
 import PasswordInput from '../../components/UI/PasswordInput';
+import { useAppDispatch } from '../../hooks';
+import { useAddUserMutation, useGetUsersQuery } from '../../store/services/user';
+import { setUser } from '../../store/slices/userSlice';
+import { User } from '../../types/User';
 
 import './Registration.scss';
 
@@ -16,6 +20,11 @@ type Registration = {
 };
 
 const Registaration = () => {
+  const { data: users } = useGetUsersQuery();
+  const [addUser] = useAddUserMutation();
+  const dispatch = useAppDispatch();
+  console.log(users);
+
   const navigate = useNavigate();
   const {
     register,
@@ -25,7 +34,7 @@ const Registaration = () => {
     reset,
   } = useForm<Registration>();
 
-  const registrationSubmitHandler = handleSubmit((data: Registration) => {
+  const registrationSubmitHandler = handleSubmit(({ email, name, password }) => {
     toast.success('Вы успешно зарегистрировались', {
       position: 'top-right',
       autoClose: 5000,
@@ -37,6 +46,9 @@ const Registaration = () => {
       theme: 'dark',
     });
     navigate('/');
+    addUser({ email, name, password })
+      .unwrap()
+      .then((data: User) => dispatch(setUser(data)));
   });
 
   React.useEffect(() => {
@@ -58,17 +70,29 @@ const Registaration = () => {
           <div className="registration__form-inner">
             {errors.email && <div className="registration__form-error">{errors.email.message}</div>}
             <input
-              {...register('email', { required: 'Укажите ваш email' })}
+              {...register('email', {
+                required: 'Укажите ваш email',
+                validate: (value) =>
+                  users?.find((user) => user.email === value)?.email !== value ||
+                  'Один из пользователей уже использует этот email',
+              })}
               className="registration__form-input"
               type="email"
               placeholder="Введите email..."
+              autoComplete="off"
             />
             {errors.name && <div className="registration__form-error">{errors.name.message}</div>}
             <input
-              {...register('name', { required: 'Укажите ваше имя' })}
+              {...register('name', {
+                required: 'Придумайте имя',
+                validate: (value) =>
+                  users?.find((user) => user.name === value)?.name !== value ||
+                  'Это имя уже занято,',
+              })}
               className="registration__form-input"
               type="text"
               placeholder="Введите имя..."
+              autoComplete="off"
             />
             {errors.password && (
               <div className="registration__form-error">{errors.password.message}</div>
