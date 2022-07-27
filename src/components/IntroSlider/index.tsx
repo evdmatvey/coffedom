@@ -11,6 +11,7 @@ import introPngThree from '../../assets/img/introSlider/slide-three.png';
 
 import 'swiper/css';
 import './IntroSlider.scss';
+import { Link } from 'react-router-dom';
 
 const IntroSlider = () => {
   return (
@@ -124,7 +125,7 @@ const IntroSlider = () => {
               <div className="intro__promo-desc">
                 При первом заказе на нашем сайте. Колличество не ограничено
               </div>
-              <a href="/" className="intro__promo-link">
+              <Link to="/catalog" className="intro__promo-link">
                 Каталог
                 <svg
                   width="24"
@@ -137,7 +138,7 @@ const IntroSlider = () => {
                     fill="white"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </SwiperSlide>
@@ -216,7 +217,7 @@ const IntroSlider = () => {
               <div className="intro__promo-desc">
                 Оплачивайте бонусами до 100% при онлайн заказе
               </div>
-              <a href="/" className="intro__promo-link">
+              <Link to="/promo" className="intro__promo-link">
                 Бонусы
                 <svg
                   width="24"
@@ -229,7 +230,7 @@ const IntroSlider = () => {
                     fill="white"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </SwiperSlide>
@@ -308,7 +309,7 @@ const IntroSlider = () => {
               <div className="intro__promo-desc">
                 Или выберите из готовых наборов лучший для себя
               </div>
-              <a href="/" className="intro__promo-link">
+              <Link to="/presets" className="intro__promo-link">
                 Наборы
                 <svg
                   width="24"
@@ -321,7 +322,7 @@ const IntroSlider = () => {
                     fill="white"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </SwiperSlide>

@@ -1,0 +1,24 @@
+.promo {
+  padding-bottom: 70px;
+  &__top {
+    padding-top: 100px;
+    margin-bottom: 30px;
+    height: 220px;
+    background: url(../../assets/img/promo/promo-bg.jpg) no-repeat center / cover;
+
+    h1 {
+      margin-top: 20px;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 44px;
+      color: #2fd9b9;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}

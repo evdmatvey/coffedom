@@ -1,0 +1,28 @@
+.card {
+  width: 690px;
+  background: #202020;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  border-radius: 12px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h3 {
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 30px;
+    color: #2fd9b9;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ffffff;
+  }
+}

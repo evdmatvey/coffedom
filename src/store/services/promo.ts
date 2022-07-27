@@ -8,7 +8,10 @@ export const promoApi = createApi({
     getPromos: builder.query<Promo[], void>({
       query: () => `/`,
     }),
+    getPromosWithLimit: builder.query<Promo[], number>({
+      query: (limit) => `/?_limit=${limit}`,
+    }),
   }),
 });
 
-export const { useGetPromosQuery } = promoApi;
+export const { useGetPromosQuery, useGetPromosWithLimitQuery } = promoApi;

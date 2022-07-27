@@ -32,15 +32,15 @@ const Header = () => {
                 <Link to="/about">О нас</Link>
               </li>
               <li>
-                <Link to="/">Акции</Link>
+                <Link to="/promo">Акции</Link>
               </li>
               <li>
-                <Link to="/">Готовые наборы</Link>
+                <Link to="/presets">Готовые наборы</Link>
               </li>
             </ul>
           </nav>
           <div className="header__buttons">
-            <button className="header__button-login">
+            <Link to="/login" className="header__button-login">
               <svg
                 width="24"
                 height="24"
@@ -53,8 +53,8 @@ const Header = () => {
                 />
               </svg>
               Войти
-            </button>
-            <button className="header__button-registration">
+            </Link>
+            <Link to="/reg" className="header__button-registration">
               <svg
                 width="24"
                 height="24"
@@ -67,7 +67,7 @@ const Header = () => {
                 />
               </svg>
               Регистрация
-            </button>
+            </Link>
           </div>
         </div>
       </div>

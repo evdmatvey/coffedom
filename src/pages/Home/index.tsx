@@ -5,16 +5,16 @@ import PresetCard from '../../components/PresetCard';
 import PromoCard from '../../components/PromoCard';
 import Title from '../../components/UI/Title';
 
-import { useGetPresetsQuery } from '../../store/services/presets';
+import { useGetPresetsWithLimitQuery } from '../../store/services/presets';
 import { useGetProductsWithLimitQuery } from '../../store/services/product';
-import { useGetPromosQuery } from '../../store/services/promo';
+import { useGetPromosWithLimitQuery } from '../../store/services/promo';
 
 import './Home.scss';
 
 const Home = () => {
   const { data: products } = useGetProductsWithLimitQuery(5);
-  const { data: promos } = useGetPromosQuery();
-  const { data: presets } = useGetPresetsQuery();
+  const { data: promos } = useGetPromosWithLimitQuery(4);
+  const { data: presets } = useGetPresetsWithLimitQuery(2);
 
   return (
     <>
@@ -25,7 +25,7 @@ const Home = () => {
       </div>
       <div className="about-block">
         <div className="container">
-          <Title title="Немного о нас" link="Больше о нас" />
+          <Title title="Немного о нас" link="Больше о нас" to="/about" />
           <div className="about-block__wrapper">
             <div className="about-block__card">
               <svg
@@ -97,13 +97,13 @@ const Home = () => {
       </div>
       <div className="catalog-block">
         <div className="container">
-          <Title title="наши товары" link="Каталог" />
+          <Title title="наши товары" link="Каталог" to="/catalog" />
           {products && <CatalogSlider products={products} />}
         </div>
       </div>
       <div className="promo-block">
         <div className="container">
-          <Title title="Акции" link="Акции" />
+          <Title title="Акции" link="Акции" to="/promo" />
           <div className="promo-block__wrapper">
             {promos && promos.map((promo) => <PromoCard key={promo.id} promo={promo} />)}
           </div>
@@ -111,7 +111,7 @@ const Home = () => {
       </div>
       <div className="presets-block">
         <div className="container">
-          <Title title="Готовые наборы" link="Наборы" />
+          <Title title="Готовые наборы" link="Наборы" to="/presets" />
           <div className="presets-block__wrapper">
             {presets && presets.map((preset) => <PresetCard key={preset.id} preset={preset} />)}
           </div>

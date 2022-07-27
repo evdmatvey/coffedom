@@ -8,7 +8,10 @@ export const presetsApi = createApi({
     getPresets: builder.query<Preset[], void>({
       query: () => `/`,
     }),
+    getPresetsWithLimit: builder.query<Preset[], number>({
+      query: (limit) => `/?_limit=${limit}`,
+    }),
   }),
 });
 
-export const { useGetPresetsQuery } = presetsApi;
+export const { useGetPresetsQuery, useGetPresetsWithLimitQuery } = presetsApi;
