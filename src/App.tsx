@@ -6,6 +6,8 @@ import About from './pages/About';
 import Catalog from './pages/Catalog';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import MyPresets from './pages/MyPresets';
+import MyPresetsCreate from './pages/MyPresetsCreate';
 import Promo from './pages/Promo';
 import Registaration from './pages/Registration';
 
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/promo" element={<Promo />} />
         <Route path="/reg" element={<Registaration />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/my-presets" element={<MyPresets />} />
+        <Route path="/my-presets/create" element={<MyPresetsCreate />} />
       </Routes>
       <Footer />
     </div>

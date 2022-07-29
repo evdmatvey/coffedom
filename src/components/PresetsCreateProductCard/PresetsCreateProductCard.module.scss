@@ -1,0 +1,161 @@
+.card {
+  width: 635px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 15px;
+  background: #000;
+  border-radius: 12px;
+
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  h3 {
+    width: 90px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 22px;
+    color: #2fd9b9;
+  }
+
+  ul {
+    display: flex;
+    gap: 7px;
+  }
+
+  li {
+    width: 70px;
+    height: 30px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #303030;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      color: #a3a3a3;
+    }
+
+    &.active {
+      background: #2fd9b9;
+      color: #202020;
+    }
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    color: #ffffff;
+
+    span {
+      color: #2fd9b9;
+    }
+  }
+
+  button {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #2fd9b9;
+    border-radius: 12px;
+    background: transparent;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      background: #2fd9b9;
+      color: #202020;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cardSm {
+  width: 300px;
+  height: 60px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #202020;
+  border-radius: 12px;
+
+  .inner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    h3 {
+      width: 80px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 19px;
+      color: #ffffff;
+    }
+
+    .amount {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 19px;
+      color: #ffffff;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 19px;
+      color: #a3a3a3;
+    }
+  }
+
+  button {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    svg path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover svg path {
+      fill: #a3a3a3;
+    }
+  }
+}

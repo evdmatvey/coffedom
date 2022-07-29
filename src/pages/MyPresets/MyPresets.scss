@@ -1,0 +1,120 @@
+.my-presets {
+  padding-bottom: 70px;
+  min-height: calc(100vh - 277px);
+
+  &__top {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    background: url(../../assets/img/my-presets.jpg) no-repeat center / cover;
+  }
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    color: #2fd9b9;
+  }
+
+  &__link {
+    padding: 8px 20px;
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid #2fd9b9;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ffffff;
+    transition: all 0.15s ease-in-out;
+
+    svg path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover {
+      background: #2fd9b9;
+      color: #202020;
+
+      svg path {
+        fill: #202020;
+      }
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 50px;
+  }
+
+  &__empty {
+    width: 670px;
+    text-align: center;
+    align-self: center;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 44px;
+    color: #2fd9b9;
+  }
+
+  &__info {
+    width: 680px;
+    padding: 30px;
+    border-radius: 12px;
+    background: #202020;
+    color: #fff;
+
+    &-title {
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 27px;
+      color: #2fd9b9;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    &-text {
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      color: #ffffff;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-list {
+      padding-left: 10px;
+      margin-bottom: 10px;
+
+      li {
+        padding-left: 15px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        position: relative;
+
+        &::before {
+          content: '';
+          width: 8px;
+          height: 8px;
+          background: #2fd9b9;
+          border-radius: 30px;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+}

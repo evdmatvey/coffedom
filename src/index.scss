@@ -9,6 +9,20 @@ body {
   font-size: 14px;
   font-weight: 400;
   background: #303030;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #272727;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #eee;
+    border-radius: 20px;
+    border: 1px solid #eee;
+  }
 }
 
 a {

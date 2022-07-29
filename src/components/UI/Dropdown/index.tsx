@@ -9,6 +9,7 @@ interface DropdownProps {
   activeElement: number;
   isCitiesDropdown?: boolean;
   isDropdownLg?: boolean;
+  isDropdownSm?: boolean;
   setActiveElement: (id: number) => void;
   activeItem?: number;
   setActiveItem?: (id: number) => void;
@@ -23,6 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   isDropdownLg,
   activeItem,
   setActiveItem,
+  isDropdownSm,
 }) => {
   // const [active, setActive] = React.useState(activeElement);
   const [isVisible, setIsVisible] = React.useState(false);
@@ -55,12 +57,18 @@ const Dropdown: React.FC<DropdownProps> = ({
     <li className={styles.empty}>В этом городе нас ещё нет</li>
   );
 
+  const setDropdownClassNames = isDropdownLg
+    ? `${styles.dropdown} ${styles.dropdownLg}`
+    : isDropdownSm
+    ? `${styles.dropdown} ${styles.dropdownSm}`
+    : styles.dropdown;
+
   React.useEffect(() => {
     isCitiesDropdown ? setElements(filtredElements) : setElements(items);
   }, [city, items]);
 
   return (
-    <div className={isDropdownLg ? `${styles.dropdown} ${styles.dropdownLg}` : styles.dropdown}>
+    <div className={setDropdownClassNames}>
       <div
         className={isVisible ? `${styles.title} ${styles.active}` : styles.title}
         onClick={() => setIsVisible(!isVisible)}>

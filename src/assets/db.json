@@ -609,5 +609,16 @@
       "name": "admin",
       "password": "1234"
     }
+  ],
+  "users-presets": [
+    {
+      "id": 0,
+      "title": "Мой набор",
+      "price": 123,
+      "prodcuts": [{}],
+      "auto": 0,
+      "day": 0,
+      "time": ""
+    }
   ]
 }
