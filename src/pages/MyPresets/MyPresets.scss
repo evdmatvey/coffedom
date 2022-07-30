@@ -49,7 +49,14 @@
 
   &__wrapper {
     display: flex;
+    align-items: flex-start;
     gap: 50px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
   }
 
   &__empty {

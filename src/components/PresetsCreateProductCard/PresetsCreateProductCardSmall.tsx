@@ -18,8 +18,7 @@ const PresetsCreateProductCardSmall: React.FC<PresetsCreateProductCardSmallProps
 
   const removeProductHandler = () => {
     const index = selectedProducts.indexOf(product);
-    // const arr = [...selectedProducts];
-    // arr.splice(index, 1);
+
     selectedProducts.splice(index, 1);
     setSelectedProducts([...selectedProducts]);
   };

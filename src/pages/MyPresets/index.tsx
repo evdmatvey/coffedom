@@ -1,10 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Breadcrumb from '../../components/UI/Breadcrumb';
+import UserPresetCard from '../../components/UserPresetCard';
+import { useAppSelector } from '../../hooks';
+import { useGetUserPresetsMutation } from '../../store/services/userPresets';
+import { selectUser, selectUserId } from '../../store/slices/userSlice';
+import { UserPreset } from '../../types/UserPreset';
 
 import './MyPresets.scss';
 
 const MyPresets = () => {
+  const user = useAppSelector(selectUser);
+
+  const [userPresets, setUserPresets] = React.useState<UserPreset[]>([]);
+  const [getUserPresets] = useGetUserPresetsMutation();
+
+  console.log(userPresets);
+
+  React.useEffect(() => {
+    if (user) {
+      getUserPresets(user.id)
+        .unwrap()
+        .then((data) => setUserPresets(data));
+    } else {
+      toast.error('Войдите или зарегистрируйтесь', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+        progress: undefined,
+      });
+    }
+  }, [user]);
+
   return (
     <div className="my-presets">
       <div className="my-presets__top">
@@ -29,8 +61,25 @@ const MyPresets = () => {
       </div>
       <div className="container">
         <div className="my-presets__wrapper">
-          <div className="my-presets__items"></div>
-          <div className="my-presets__empty">Вы ещё не создали свои наборы</div>
+          {user && userPresets.length === 0 ? (
+            <div className="my-presets__empty">Вы ещё не создали свои наборы</div>
+          ) : (
+            <div className="my-presets__items">
+              {userPresets.map((preset) => (
+                <UserPresetCard
+                  key={preset.id}
+                  preset={preset}
+                  presets={userPresets}
+                  setPresets={setUserPresets}
+                />
+              ))}
+            </div>
+          )}
+          {!user && (
+            <div className="my-presets__empty">
+              Войдите или зарегистрируйтесь, чтобы просматривать свои наборы
+            </div>
+          )}
           <div className="my-presets__info">
             <h2 className="my-presets__info-title">
               <svg

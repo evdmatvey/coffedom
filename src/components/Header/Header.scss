@@ -33,17 +33,27 @@ $light-black: #303030;
     list-style: none;
 
     a {
-      padding-top: 6px;
-      padding-bottom: 6px;
+      padding-top: 3px;
+      padding-bottom: 3px;
       font-weight: 600;
       font-size: 18px;
       line-height: 27px;
-      border-bottom: 1px solid transparent;
       color: #ffffff;
-      transition: all 0.15s ease-in-out;
+      position: relative;
 
-      &:hover {
-        border-color: #2fd9b9;
+      &::after {
+        content: '';
+        width: 0;
+        height: 1px;
+        background: #2fd9b9;
+        transition: width 0.3s ease-in-out;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      &:hover::after {
+        width: 100%;
       }
     }
   }

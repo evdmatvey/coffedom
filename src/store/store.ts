@@ -4,6 +4,7 @@ import { presetsApi } from './services/presets';
 import { productApi } from './services/product';
 import { promoApi } from './services/promo';
 import { userApi } from './services/user';
+import { userPresetsApi } from './services/userPresets';
 import userSlice from './slices/userSlice';
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
     [presetsApi.reducerPath]: presetsApi.reducer,
     [adressApi.reducerPath]: adressApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [userPresetsApi.reducerPath]: userPresetsApi.reducer,
     user: userSlice,
   },
   middleware: (getDefaultMiddleware) =>
@@ -21,7 +23,8 @@ export const store = configureStore({
       .concat(promoApi.middleware)
       .concat(presetsApi.middleware)
       .concat(adressApi.middleware)
-      .concat(userApi.middleware),
+      .concat(userApi.middleware)
+      .concat(userPresetsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

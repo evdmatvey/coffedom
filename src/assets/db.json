@@ -379,8 +379,14 @@
         "price": 910
       },
       "amount": [
-        [2, 1],
-        [2, 3]
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ]
       ]
     },
     {
@@ -426,8 +432,14 @@
         "price": 830
       },
       "amount": [
-        [2, 1],
-        [2, 3]
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ]
       ]
     }
   ],
@@ -608,17 +620,68 @@
       "email": "d@d.d",
       "name": "admin",
       "password": "1234"
+    },
+    {
+      "email": "d.d@d.d",
+      "name": "takoe",
+      "password": "1234",
+      "id": 1
     }
   ],
   "users-presets": [
     {
-      "id": 0,
-      "title": "Мой набор",
-      "price": 123,
-      "prodcuts": [{}],
+      "userId": 0,
+      "title": "Мой набор #1",
+      "products": [
+        {
+          "id": 5,
+          "title": "Булочка с корицей",
+          "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+          "price": 142,
+          "size": "120 г.",
+          "amount": 3
+        },
+        {
+          "id": 1,
+          "title": "Латте",
+          "imageUrl": "https://i.ibb.co/wYDc3Lw/2.png",
+          "price": 164,
+          "size": "450 мл.",
+          "amount": 1
+        }
+      ],
+      "price": 590,
+      "auto": 1,
+      "day": 7,
+      "time": "9:00",
+      "id": 1
+    },
+    {
+      "userId": 0,
+      "title": "Мой набор #2",
+      "products": [
+        {
+          "id": 2,
+          "title": "Американо",
+          "imageUrl": "https://i.ibb.co/80RJvHN/3.png",
+          "price": 160,
+          "size": "350 мл.",
+          "amount": 1
+        },
+        {
+          "id": 5,
+          "title": "Булочка с корицей",
+          "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+          "price": 162,
+          "size": "160 г.",
+          "amount": 2
+        }
+      ],
+      "price": 484,
       "auto": 0,
       "day": 0,
-      "time": ""
+      "time": "",
+      "id": 2
     }
   ]
 }

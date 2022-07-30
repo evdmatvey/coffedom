@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import PresetsCreateProductCard from '../../components/PresetsCreateProductCard';
 import PresetsCreateProductCardSmall from '../../components/PresetsCreateProductCard/PresetsCreateProductCardSmall';
 import Breadcrumb from '../../components/UI/Breadcrumb';
@@ -10,12 +11,18 @@ import {
   getProductsAmountByType,
   getTotalPrice,
 } from '../../helpers';
+import { useAppSelector } from '../../hooks';
 import { useGetProductsQuery } from '../../store/services/product';
+import { useAddUserPresetMutation } from '../../store/services/userPresets';
+import { selectAuthState, selectUser } from '../../store/slices/userSlice';
 import { SelectedProduct } from '../../types/SelectedProduct';
 
 import './MyPresetsCreate.scss';
 
 const MyPresetsCreate = () => {
+  const isAuth = useAppSelector(selectAuthState);
+  const user = useAppSelector(selectUser);
+
   const [presetTitle, setPresetTitle] = React.useState('');
   const [searchValue, setSearchValue] = React.useState('');
   const [activeAutoOrderTime, setActiveAutoOrderTime] = React.useState('');
@@ -24,19 +31,91 @@ const MyPresetsCreate = () => {
   const [selectedProducts, setSelectedProducts] = React.useState<[] | SelectedProduct[]>([]);
   const [activeAutoOrderDays, setActiveAutoOrderDays] = React.useState(0);
   const { data: products } = useGetProductsQuery(`title_like=${searchValue}`);
-  const [drinksAmount, snaksAmout] = getProductsAmountByType(selectedProducts);
+  const [addUserPreset] = useAddUserPresetMutation();
+  const [drinksAmount, snaksAmount] = getProductsAmountByType(selectedProducts);
   const totalPrice = getTotalPrice(selectedProducts);
 
   const timeInputBlurHandler = (value: string) => {
     if (!checkTime(value)) {
       setTimeInputError(true);
+      toast.error('Укажите время доставки в коректной форме', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+        progress: undefined,
+      });
     } else {
       setTimeInputError(false);
     }
   };
 
   const addToCartHandler = () => {
-    alert(1);
+    if (!isAuth) {
+      toast.error('Войдите или зарегистрируйтесь', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+        progress: undefined,
+      });
+      return;
+    }
+
+    if (presetTitle === '') {
+      toast.error('Придумайте название для набора', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+        progress: undefined,
+      });
+      return;
+    }
+
+    if (activeAutoOrderTime === '' && autoOrder === 1) {
+      toast.error('Укажите время доставки', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+        progress: undefined,
+      });
+      return;
+    }
+
+    addUserPreset({
+      userId: user?.id,
+      title: presetTitle,
+      products: selectedProducts,
+      price: totalPrice,
+      auto: autoOrder,
+      day: activeAutoOrderDays,
+      time: activeAutoOrderTime,
+    }).then(() => {
+      toast.success('Набор успешно создан', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+        progress: undefined,
+      });
+    });
   };
 
   return (
@@ -88,7 +167,7 @@ const MyPresetsCreate = () => {
                         fill="#A3A3A3"
                       />
                     </svg>
-                    {snaksAmout}
+                    {snaksAmount}
                   </p>
                 </div>
               )}
