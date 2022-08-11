@@ -12,8 +12,8 @@ import styles from './Contacts.module.scss';
 const Contacts = () => {
   const [activeCity, setActiveCity] = React.useState(0);
   const { data: cities } = useGetCitiesQuery();
-  const { data: adresses } = useGetAdressesQuery(`id=${activeCity}`);
-  const [activeAdress, setActiveAdress] = React.useState(0);
+  const { data: addresses } = useGetAdressesQuery(`id=${activeCity}`);
+  const [activeaddress, setActiveaddress] = React.useState(0);
   const [activeItem, setActiveItem] = React.useState(0);
 
   const { data: shops } = useGetShopsQuery(`id=${activeItem}`);
@@ -115,11 +115,11 @@ const Contacts = () => {
               isDropdownLg
             />
           )}
-          {adresses && (
+          {addresses && (
             <Dropdown
-              activeElement={activeAdress}
-              items={adresses[0].items}
-              setActiveElement={setActiveAdress}
+              activeElement={activeaddress}
+              items={addresses[0].items}
+              setActiveElement={setActiveaddress}
               isDropdownLg
               setActiveItem={setActiveItem}
             />
@@ -127,7 +127,8 @@ const Contacts = () => {
         </div>
         <div className={styles.desc}>
           <h2>
-            {cities && cities[activeCity].text} {adresses && adresses[0].items[activeAdress].text}
+            {cities && cities[activeCity].text}{' '}
+            {addresses && addresses[0].items[activeaddress].text}
           </h2>
           {shop && (
             <ul>

@@ -1,0 +1,46 @@
+.input {
+  height: 40px;
+  padding: 10px 14px;
+  border: 1px solid #2fd9b9;
+  border-radius: 12px;
+  background: transparent;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #eee;
+  transition: all 0.15s ease-in-out;
+
+  &::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    color: #bdbdbd;
+  }
+
+  &.sm {
+    width: 270px;
+  }
+
+  &.md {
+    width: 300px;
+  }
+  &.lg {
+    width: 415px;
+  }
+
+  &.changing {
+    width: 200px;
+
+    &:focus {
+      width: 70px;
+    }
+  }
+}
+
+.error {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #bdbdbd;
+}

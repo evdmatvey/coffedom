@@ -4,18 +4,22 @@ import PresetsCreateProductCard from '../../components/PresetsCreateProductCard'
 import PresetsCreateProductCardSmall from '../../components/PresetsCreateProductCard/PresetsCreateProductCardSmall';
 import Breadcrumb from '../../components/UI/Breadcrumb';
 import Dropdown from '../../components/UI/Dropdown';
+import Search from '../../components/UI/Search';
+import TextFiled from '../../components/UI/TextField';
+import { useAppSelector } from '../../hooks';
+import { useGetProductsQuery } from '../../store/services/product';
+import { useAddUserPresetMutation } from '../../store/services/userPresets';
+import { selectAuthState, selectUser } from '../../store/slices/userSlice';
+import { SelectedProduct } from '../../types/SelectedProduct';
+
 import {
   autoOrderDaysList,
   checkTime,
   getAutoOrderDays,
   getProductsAmountByType,
   getTotalPrice,
+  toastOptions,
 } from '../../helpers';
-import { useAppSelector } from '../../hooks';
-import { useGetProductsQuery } from '../../store/services/product';
-import { useAddUserPresetMutation } from '../../store/services/userPresets';
-import { selectAuthState, selectUser } from '../../store/slices/userSlice';
-import { SelectedProduct } from '../../types/SelectedProduct';
 
 import './MyPresetsCreate.scss';
 
@@ -23,31 +27,29 @@ const MyPresetsCreate = () => {
   const isAuth = useAppSelector(selectAuthState);
   const user = useAppSelector(selectUser);
 
-  const [presetTitle, setPresetTitle] = React.useState('');
-  const [searchValue, setSearchValue] = React.useState('');
-  const [activeAutoOrderTime, setActiveAutoOrderTime] = React.useState('');
+  const [presetData, setPresetData] = React.useState({
+    title: '',
+    searchValue: '',
+    time: '',
+    auto: 0,
+    day: 0,
+  });
   const [timeInputError, setTimeInputError] = React.useState(false);
-  const [autoOrder, setAutoOrder] = React.useState(0);
   const [selectedProducts, setSelectedProducts] = React.useState<[] | SelectedProduct[]>([]);
-  const [activeAutoOrderDays, setActiveAutoOrderDays] = React.useState(0);
-  const { data: products } = useGetProductsQuery(`title_like=${searchValue}`);
+  const { data: products } = useGetProductsQuery(`title_like=${presetData.searchValue}`);
   const [addUserPreset] = useAddUserPresetMutation();
+
   const [drinksAmount, snaksAmount] = getProductsAmountByType(selectedProducts);
   const totalPrice = getTotalPrice(selectedProducts);
+  const autoOrderStatusText =
+    presetData.auto !== 0 && !timeInputError
+      ? `${getAutoOrderDays(presetData.day)}, ${presetData.time}`
+      : 'Без автозаказа';
 
   const timeInputBlurHandler = (value: string) => {
     if (!checkTime(value)) {
       setTimeInputError(true);
-      toast.error('Укажите время доставки в коректной форме', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark',
-        progress: undefined,
-      });
+      toast.error('Укажите время доставки в коректной форме', toastOptions);
     } else {
       setTimeInputError(false);
     }
@@ -55,66 +57,30 @@ const MyPresetsCreate = () => {
 
   const addToCartHandler = () => {
     if (!isAuth) {
-      toast.error('Войдите или зарегистрируйтесь', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark',
-        progress: undefined,
-      });
+      toast.error('Войдите или зарегистрируйтесь', toastOptions);
       return;
     }
 
-    if (presetTitle === '') {
-      toast.error('Придумайте название для набора', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark',
-        progress: undefined,
-      });
+    if (presetData.title === '') {
+      toast.error('Придумайте название для набора', toastOptions);
       return;
     }
 
-    if (activeAutoOrderTime === '' && autoOrder === 1) {
-      toast.error('Укажите время доставки', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark',
-        progress: undefined,
-      });
+    if (presetData.time === '' && presetData.auto === 1) {
+      toast.error('Укажите время доставки', toastOptions);
       return;
     }
 
     addUserPreset({
       userId: user?.id,
-      title: presetTitle,
+      title: presetData.title,
       products: selectedProducts,
       price: totalPrice,
-      auto: autoOrder,
-      day: activeAutoOrderDays,
-      time: activeAutoOrderTime,
+      auto: presetData.auto,
+      day: presetData.day,
+      time: presetData.time,
     }).then(() => {
-      toast.success('Набор успешно создан', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark',
-        progress: undefined,
-      });
+      toast.success('Набор успешно создан', toastOptions);
     });
   };
 
@@ -137,7 +103,7 @@ const MyPresetsCreate = () => {
           <div className="presets-create__preset">
             <div className="presets-create__preset-top">
               <h2 className="presets-create__preset-title">
-                {presetTitle !== '' ? presetTitle : 'Придумайте название набора'}
+                {presetData.title !== '' ? presetData.title : 'Придумайте название набора'}
               </h2>
               {selectedProducts.length && (
                 <div className="presets-create__preset-status">
@@ -183,9 +149,7 @@ const MyPresetsCreate = () => {
                     fill="#A3A3A3"
                   />
                 </svg>
-                {autoOrder !== 0 && !timeInputError
-                  ? `${getAutoOrderDays(activeAutoOrderDays)}, ${activeAutoOrderTime}`
-                  : 'Без автозаказа'}
+                {autoOrderStatusText}
               </div>
             </div>
             <div className="presets-create__preset-products">
@@ -230,12 +194,11 @@ const MyPresetsCreate = () => {
                 </svg>
                 Название набора
               </h2>
-              <input
-                className="presets-create__settings-input"
-                type="text"
+              <TextFiled
+                variant="sm"
                 placeholder="Введите название набора..."
-                value={presetTitle}
-                onChange={(e) => setPresetTitle(e.target.value)}
+                value={presetData.title}
+                onChange={(title) => setPresetData({ ...presetData, title })}
               />
             </div>
             <div className="presets-create__settings-wrapper">
@@ -253,35 +216,11 @@ const MyPresetsCreate = () => {
                 </svg>
                 Товары
               </h2>
-              <div className="presets-create__settings-search">
-                <input
-                  type="text"
-                  placeholder="Поиск..."
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
-                />
-                <button>
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M10.875 3.75C6.93997 3.75 3.75 6.93997 3.75 10.875C3.75 14.81 6.93997 18 10.875 18C14.81 18 18 14.81 18 10.875C18 6.93997 14.81 3.75 10.875 3.75ZM2.25 10.875C2.25 6.11154 6.11154 2.25 10.875 2.25C15.6385 2.25 19.5 6.11154 19.5 10.875C19.5 15.6385 15.6385 19.5 10.875 19.5C6.11154 19.5 2.25 15.6385 2.25 10.875Z"
-                      fill="#2FD9B9"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M15.9133 15.9135C16.2062 15.6206 16.681 15.6206 16.9739 15.9135L21.5302 20.4697C21.8231 20.7626 21.8231 21.2375 21.5302 21.5304C21.2373 21.8233 20.7624 21.8233 20.4695 21.5304L15.9133 16.9741C15.6204 16.6812 15.6204 16.2064 15.9133 15.9135Z"
-                      fill="#2FD9B9"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <Search
+                variant="sm"
+                searchText={presetData.searchValue}
+                setSearchText={(search) => setPresetData({ ...presetData, searchValue: search })}
+              />
             </div>
             <div className="presets-create__settings-products">
               {products &&
@@ -313,41 +252,36 @@ const MyPresetsCreate = () => {
                 <div className="presets-create__auto-inner">
                   <button
                     className={
-                      autoOrder === 0
+                      presetData.auto === 0
                         ? 'presets-create__auto-button active'
                         : 'presets-create__auto-button'
                     }
-                    onClick={() => setAutoOrder(0)}>
+                    onClick={() => setPresetData({ ...presetData, auto: 0 })}>
                     Без автозаказа
                   </button>
                   <button
                     className={
-                      autoOrder === 1
+                      presetData.auto === 1
                         ? 'presets-create__auto-button active'
                         : 'presets-create__auto-button'
                     }
-                    onClick={() => setAutoOrder(1)}>
+                    onClick={() => setPresetData({ ...presetData, auto: 1 })}>
                     Автозаказ
                   </button>
                 </div>
-                {autoOrder !== 0 && (
+                {presetData.auto !== 0 && (
                   <div className="presets-create__auto-inner">
                     <Dropdown
-                      activeElement={activeAutoOrderDays}
-                      setActiveElement={setActiveAutoOrderDays}
+                      activeElement={presetData.day}
+                      setActiveElement={(day) => setPresetData({ ...presetData, day })}
                       isDropdownSm
                       items={autoOrderDaysList}
                     />
-                    <input
-                      type="text"
-                      className={
-                        timeInputError
-                          ? 'presets-create__auto-time presets-create__auto-time--error'
-                          : 'presets-create__auto-time'
-                      }
+                    <TextFiled
+                      variant="changing"
                       placeholder="Введите время (п. 12:00)"
-                      value={activeAutoOrderTime}
-                      onChange={(e) => setActiveAutoOrderTime(e.target.value)}
+                      onChange={(time) => setPresetData({ ...presetData, time })}
+                      value={presetData.time}
                       onBlur={(e) => timeInputBlurHandler(e.target.value)}
                     />
                   </div>

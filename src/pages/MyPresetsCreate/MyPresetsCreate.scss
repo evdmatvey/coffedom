@@ -161,66 +161,6 @@
       color: #2fd9b9;
     }
 
-    &-input {
-      width: 270px;
-      height: 40px;
-      padding: 10px 14px;
-      border: 1px solid #2fd9b9;
-      border-radius: 12px;
-      background: transparent;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 19px;
-      color: #fff;
-
-      &::placeholder {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 19px;
-        color: #a3a3a3;
-      }
-    }
-
-    &-search {
-      display: flex;
-      width: 270px;
-      height: 40px;
-
-      input {
-        width: 232px;
-        height: 40px;
-        padding: 10px 14px;
-        border: 1px solid #2fd9b9;
-        border-right: none;
-        border-radius: 12px 0 0 12px;
-        background: transparent;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 19px;
-        color: #fff;
-
-        &::placeholder {
-          font-weight: 500;
-          font-size: 14px;
-          line-height: 19px;
-          color: #a3a3a3;
-        }
-      }
-
-      button {
-        width: 38px;
-        padding-right: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #2fd9b9;
-        border-radius: 0 12px 12px 0;
-        border-left: none;
-        background: transparent;
-        cursor: pointer;
-      }
-    }
-
     &-products {
       height: 200px;
       overflow-y: scroll;
@@ -279,35 +219,6 @@
       &.active {
         background: #2fd9b9;
         color: #202020;
-      }
-    }
-
-    &-time {
-      width: 200px;
-      height: 40px;
-      padding: 10px 14px;
-      border: 1px solid #2fd9b9;
-      border-radius: 12px;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 19px;
-      color: #fff;
-      background: transparent;
-      transition: all 0.15s ease-in-out;
-
-      &::placeholder {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 19px;
-        color: #a3a3a3;
-      }
-
-      &:focus {
-        width: 70px;
-      }
-
-      &--error {
-        border-color: #d9382f;
       }
     }
   }

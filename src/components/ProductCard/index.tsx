@@ -1,5 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { toastOptions } from '../../helpers';
 import { useAppSelector } from '../../hooks';
 import { selectAuthState } from '../../store/slices/userSlice';
 import { Product } from '../../types/Product';
@@ -31,16 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
     if (isAuth) {
       setCount(count + 1);
     } else {
-      toast.error('Войдите или зарегистрируйтесь', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark',
-        progress: undefined,
-      });
+      toast.error('Войдите или зарегистрируйтесь', toastOptions);
     }
   };
 

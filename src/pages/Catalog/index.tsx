@@ -64,7 +64,7 @@ const Catalog = () => {
             </div>
             <div className="catalog__top-item">
               <h3 className="catalog__top-title">Поиск</h3>
-              <Search searchText={searchValue} setSearchText={setSearchValue} />
+              <Search variant="md" searchText={searchValue} setSearchText={setSearchValue} />
             </div>
             <div className="catalog__top-item">
               <h3 className="catalog__top-title">Категории</h3>

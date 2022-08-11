@@ -1,18 +1,20 @@
 import React from 'react';
-import { toast } from 'react-toastify';
+import { toast, ToastOptions } from 'react-toastify';
+import PresetsProductSmallCard from '../PresetsCreateProductCard/PresetsProductSmallCard';
+import Dropdown from '../UI/Dropdown';
+import { UserPreset } from '../../types/UserPreset';
+
+import {
+  useDeleteUserPresetMutation,
+  useUpdateUserPresetMutation,
+} from '../../store/services/userPresets';
 import {
   autoOrderDaysList,
   checkTime,
   getAutoOrderDays,
   getProductsAmountByType,
+  toastOptions,
 } from '../../helpers';
-import {
-  useDeleteUserPresetMutation,
-  useUpdateUserPresetMutation,
-} from '../../store/services/userPresets';
-import { UserPreset } from '../../types/UserPreset';
-import PresetsProductSmallCard from '../PresetsCreateProductCard/PresetsProductSmallCard';
-import Dropdown from '../UI/Dropdown';
 
 import styles from './UserPresetCard.module.scss';
 
@@ -27,39 +29,33 @@ const UserPresetCard: React.FC<UserPresetCardProps> = ({ preset, setPresets, pre
   const [updateUserPreset] = useUpdateUserPresetMutation();
   const [deleteUserPreset] = useDeleteUserPresetMutation();
   const [drinksAmount, snaksAmount] = getProductsAmountByType(products);
+
   const [popupActive, setPopupActive] = React.useState(false);
-  const [activeDay, setActiveDay] = React.useState(day);
-  const [timeValue, setTimeValue] = React.useState(time);
-  const [autoType, setAutoType] = React.useState(auto);
+
+  const [autoSettings, setAutoSettings] = React.useState({
+    day,
+    time,
+    auto,
+  });
 
   const normalizeAuto =
-    autoType === 0 ? 'Без автозаказа' : `${getAutoOrderDays(activeDay)}, ${timeValue}`;
+    autoSettings.auto === 0
+      ? 'Без автозаказа'
+      : `${getAutoOrderDays(autoSettings.day)}, ${autoSettings.time}`;
 
   const closePopupHandler = () => {
-    toast.success('Изменения внесены успешно', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: 'dark',
-      progress: undefined,
-    });
+    toast.success('Изменения внесены успешно', toastOptions);
     setPopupActive(false);
   };
 
   const updateUserPresetHandler = () => {
-    if (time === timeValue && day === activeDay) {
-      setPopupActive(false);
-      return;
-    }
-
-    if (autoType === 1 && checkTime(timeValue)) {
-      const changes = { auto: 1, day: activeDay, time: timeValue };
+    if (checkTime(autoSettings.time)) {
+      const changes = { auto: 1, day: autoSettings.day, time: autoSettings.time };
       updateUserPreset({ id, changes });
-      setAutoType(1);
+      setAutoSettings({ ...autoSettings, auto: 1 });
       closePopupHandler();
+    } else {
+      toast.error('Укажите время в валидном формате', toastOptions);
     }
   };
 
@@ -72,8 +68,12 @@ const UserPresetCard: React.FC<UserPresetCardProps> = ({ preset, setPresets, pre
   const removeAutoHandler = () => {
     const changes = { auto: 0, day: 0, time: '' };
     updateUserPreset({ id, changes });
-    setAutoType(0);
+    setAutoSettings(changes);
     closePopupHandler();
+  };
+
+  const changeDay = (id: number) => {
+    setAutoSettings({ ...autoSettings, day: id });
   };
 
   return (
@@ -153,16 +153,16 @@ const UserPresetCard: React.FC<UserPresetCardProps> = ({ preset, setPresets, pre
         <div className={styles.popup}>
           <h3>Настройки</h3>
           <Dropdown
-            activeElement={activeDay}
-            setActiveElement={setActiveDay}
+            activeElement={autoSettings.day}
+            setActiveElement={changeDay}
             isDropdownSm
             items={autoOrderDaysList}
           />
           <input
             type="text"
-            value={timeValue}
+            value={autoSettings.time}
             placeholder="Укажите время доставки.."
-            onChange={(e) => setTimeValue(e.target.value)}
+            onChange={(e) => setAutoSettings({ ...autoSettings, time: e.target.value })}
           />
           <button className={styles.success} onClick={updateUserPresetHandler}>
             Сохранить

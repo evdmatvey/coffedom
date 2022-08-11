@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -7,6 +7,8 @@ import logoSvg from './../../assets/img/logo.svg';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './Footer.module.scss';
+import TextFiled from '../UI/TextField';
+import { toastOptions } from '../../helpers';
 
 type Message = {
   email: string;
@@ -18,28 +20,14 @@ const Footer = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
-    reset,
-  } = useForm<Message>();
-
-  const onFormSubmit = handleSubmit((data: Message) => {
-    console.log(data);
-    toast.success('Ваще сообщение успушно отправлено', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-    });
+  } = useForm<Message>({
+    mode: 'onChange',
   });
 
-  React.useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset({ ...{ email: '', text: '' } });
-    }
-  }, [isSubmitSuccessful, reset]);
+  const onFormSubmit: SubmitHandler<Message> = (data: Message, e) => {
+    e?.target.reset();
+    toast.success('Ваще сообщение успушно отправлено', toastOptions);
+  };
 
   return (
     <>
@@ -209,13 +197,17 @@ const Footer = () => {
             </div>
             <div className={styles.form}>
               <h3>Сообщить о проблеме</h3>
-              {errors.email && <div className={styles.error}>Вы не указали email</div>}
-              <form onSubmit={onFormSubmit}>
-                <input
-                  {...register('email', { required: true })}
-                  type="email"
+              <form onSubmit={handleSubmit(onFormSubmit)}>
+                <TextFiled
+                  variant="lg"
+                  register={{
+                    ...register('email', {
+                      required: 'Укажите корректный адрес электронной почты',
+                    }),
+                  }}
                   placeholder="Ваш email"
-                  autoComplete="off"
+                  type="email"
+                  errorMessage={errors.email?.message}
                 />
                 <textarea {...register('text')} placeholder="Кратко опишите проблему.."></textarea>
                 <button type="submit">Отправить</button>

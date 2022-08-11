@@ -1,3 +1,4 @@
+import { ToastOptions } from 'react-toastify';
 import { SelectedProduct } from './types/SelectedProduct';
 
 export const getSort = (sort: number) => (sort === 0 ? 'rating' : sort === 1 ? 'title' : 'price');
@@ -59,4 +60,15 @@ export const getTotalPrice = (products: SelectedProduct[] | []) => {
   products.forEach((product) => (totalPrice += product.price * product.amount));
 
   return totalPrice;
+};
+
+export const toastOptions: ToastOptions<{}> | undefined = {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  theme: 'dark',
+  progress: undefined,
 };

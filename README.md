@@ -21,3 +21,4 @@ After you start the fake server, you can see the JSON data at this link. [runnin
 - React.js
 - Typescript
 - Redux Toolkit
+- JSON server for data

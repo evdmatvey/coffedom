@@ -2,7 +2,6 @@
   position: relative;
 
   input {
-    width: 320px;
     padding: 10px 48px 10px 14px;
     border: 1px solid #2fd9b9;
     border-radius: 12px;
@@ -22,6 +21,18 @@
 
     &:focus {
       border: 1px solid lighten(#2fd9b9, 15%);
+    }
+  }
+
+  &.md {
+    input {
+      width: 320px;
+    }
+  }
+
+  &.sm {
+    input {
+      width: 270px;
     }
   }
 }

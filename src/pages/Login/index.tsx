@@ -1,9 +1,11 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Breadcrumb from '../../components/UI/Breadcrumb';
 import PasswordInput from '../../components/UI/PasswordInput';
+import TextFiled from '../../components/UI/TextField';
+import { toastOptions } from '../../helpers';
 import { useAppDispatch } from '../../hooks';
 import { useGetUserByEmailAndPasswordMutation, useGetUsersQuery } from '../../store/services/user';
 import { setUser } from '../../store/slices/userSlice';
@@ -30,28 +32,14 @@ const Login = () => {
     handleSubmit,
   } = useForm<LoginData>();
 
-  const loginSubmitHandler = handleSubmit((data) => {
+  const loginSubmitHandler: SubmitHandler<LoginData> = (data, e) => {
+    e?.target.reset();
     getUserByEmailAndPassword(data)
       .unwrap()
       .then((data) => dispatch(setUser(data[0])));
-    toast.success('Вы успешно вошли в аккаунт', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-    });
+    toast.success('Вы успешно вошли в аккаунт', toastOptions);
     navigate('/');
-  });
-
-  React.useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset({ email: '', password: '' });
-    }
-  }, [isSubmitSuccessful]);
+  };
 
   return (
     <div className="login">
@@ -62,22 +50,22 @@ const Login = () => {
         </div>
       </div>
       <div className="container">
-        <form className="login__form" onSubmit={loginSubmitHandler}>
+        <form className="login__form" onSubmit={handleSubmit(loginSubmitHandler)}>
           <div className="login__form-inner">
-            {errors.email && <div className="login__form-error">{errors.email.message}</div>}
-            <input
-              {...register('email', {
-                required: 'Введите корректный email',
-                validate: (value) =>
-                  (users && users.find((user) => user.email === value)?.email === value) ||
-                  'Пользователь с таким email не найден',
-              })}
-              type="email"
-              className="login__form-input"
+            <TextFiled
+              variant="md"
+              register={{
+                ...register('email', {
+                  required: 'Введите корректный email',
+                  validate: (value) =>
+                    (users && users.find((user) => user.email === value)?.email === value) ||
+                    'Неверный логин или пароль',
+                }),
+              }}
               placeholder="Введите email..."
-              autoComplete="off"
+              type="email"
+              errorMessage={errors.email?.message}
             />
-            {errors.password && <div className="login__form-error">{errors.password.message}</div>}
             <PasswordInput
               register={{
                 ...register('password', {
@@ -91,6 +79,7 @@ const Login = () => {
                 }),
               }}
               placeholder="Введите пароль..."
+              errorMessage={errors.password?.message}
             />
           </div>
           <button className="login__form-button">Войти</button>

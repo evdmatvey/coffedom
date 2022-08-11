@@ -5,9 +5,10 @@ import styles from './Search.module.scss';
 interface SearchProps {
   searchText: string;
   setSearchText: (text: string) => void;
+  variant: 'md' | 'sm';
 }
 
-const Search: React.FC<SearchProps> = ({ searchText, setSearchText }) => {
+const Search: React.FC<SearchProps> = ({ searchText, setSearchText, variant }) => {
   const [value, setValue] = React.useState(searchText);
 
   const valueChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +17,7 @@ const Search: React.FC<SearchProps> = ({ searchText, setSearchText }) => {
   };
 
   return (
-    <div className={styles.search}>
+    <div className={`${styles.search} ${styles[variant]}`}>
       <input
         type="text"
         value={value}

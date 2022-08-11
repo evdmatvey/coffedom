@@ -26,18 +26,14 @@ const Dropdown: React.FC<DropdownProps> = ({
   setActiveItem,
   isDropdownSm,
 }) => {
-  // const [active, setActive] = React.useState(activeElement);
   const [isVisible, setIsVisible] = React.useState(false);
   const [city, setCity] = React.useState('');
   const [elements, setElements] = React.useState(items);
-
-  // console.log('Active item', activeElement, items);
 
   const setActiveHandler = (id: number, index: number) => {
     if (setActiveItem) {
       setActiveItem(id);
     }
-    // console.log(index, id);
 
     setActiveElement(index);
     setIsVisible(false);

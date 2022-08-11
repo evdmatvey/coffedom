@@ -379,14 +379,8 @@
         "price": 910
       },
       "amount": [
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          3
-        ]
+        [2, 1],
+        [2, 3]
       ]
     },
     {
@@ -432,14 +426,8 @@
         "price": 830
       },
       "amount": [
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          3
-        ]
+        [2, 1],
+        [2, 3]
       ]
     }
   ],
@@ -626,6 +614,18 @@
       "name": "takoe",
       "password": "1234",
       "id": 1
+    },
+    {
+      "email": "mail@mail.ru",
+      "name": "mail",
+      "password": "mail",
+      "id": 2
+    },
+    {
+      "email": "user@d.d",
+      "name": "user",
+      "password": "1234",
+      "id": 3
     }
   ],
   "users-presets": [
@@ -652,8 +652,8 @@
       ],
       "price": 590,
       "auto": 1,
-      "day": 7,
-      "time": "9:00",
+      "day": 2,
+      "time": "12:00",
       "id": 1
     },
     {
@@ -682,6 +682,49 @@
       "day": 0,
       "time": "",
       "id": 2
+    },
+    {
+      "userId": 0,
+      "title": "Мой набор",
+      "products": [
+        {
+          "id": 0,
+          "title": "Капучино",
+          "imageUrl": "https://i.ibb.co/FYtBsrp/1.png",
+          "price": 120,
+          "size": "250 мл.",
+          "amount": 1
+        },
+        {
+          "id": 1,
+          "title": "Латте",
+          "imageUrl": "https://i.ibb.co/wYDc3Lw/2.png",
+          "price": 164,
+          "size": "450 мл.",
+          "amount": 1
+        },
+        {
+          "id": 5,
+          "title": "Булочка с корицей",
+          "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+          "price": 162,
+          "size": "160 г.",
+          "amount": 1
+        },
+        {
+          "id": 5,
+          "title": "Булочка с корицей",
+          "imageUrl": "https://i.ibb.co/G29LRWX/6.png",
+          "price": 142,
+          "size": "120 г.",
+          "amount": 2
+        }
+      ],
+      "price": 730,
+      "auto": 1,
+      "day": 0,
+      "time": "12:20",
+      "id": 3
     }
   ]
 }
