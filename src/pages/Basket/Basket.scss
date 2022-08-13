@@ -1,0 +1,158 @@
+* {
+  content: "";
+}
+
+.basket {
+  padding-bottom: 70px;
+
+  min-height: calc(100vh - 277px);
+
+  &__nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__top {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    background: url(../../assets/img/Basket/header.png) no-repeat center / cover;
+  }
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    color: #2fd9b9;
+  }
+
+  &__link {
+    padding: 8px 20px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid #2fd9b9;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ffffff;
+    transition: all 0.15s ease-in-out;
+
+    .img {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url("../../assets/img/Basket/svg.svg") no-repeat center center;
+    }
+
+    svg path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover {
+      background: #2fd9b9;
+      color: #202020;
+
+      .img {
+        background: url("../../assets/img/Basket/Vector-2.svg") no-repeat center
+          center;
+      }
+
+      svg path {
+        fill: #202020;
+      }
+    }
+  }
+
+  &__clear {
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+
+    .img {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: no-repeat center center
+        url("../../assets/img/Basket/clear.png");
+    }
+
+    &:hover {
+      background-color: transparent;
+
+      color: #fff;
+      border-color: #fff;
+
+      .img {
+        background-image: url("../../assets/img/Basket/clear-1.png");
+      }
+    }
+  }
+
+  //main
+
+  &__main {
+    h1 {
+      margin-left: 25px;
+    }
+
+    &__pay {
+      margin-top: -50px;
+
+      .img {
+        content: "";
+        width: 20px;
+        height: 40px;
+        background: url("../../assets/img/Basket/pay.png") no-repeat center
+          center;
+        margin-bottom: 25px;
+        margin-top: -5px;
+      }
+
+      &__block {
+        width: 500px;
+        height: 272px;
+        background-color: #202020;
+        border-radius: 10px;
+      }
+    }
+
+    &__flex {
+      gap: 100px;
+      display: flex;
+    }
+
+    .tovar {
+      content: "";
+      width: 20px;
+      height: 40px;
+      background: url("../../assets/img/Basket/tover-2.png") center center
+        no-repeat;
+    }
+
+    &__list {
+      margin-top: 30px;
+      width: 800px;
+      height: 340px;
+      background-color: #202020;
+      border-radius: 10px;
+      padding: 30px 50px 30px 50px;
+
+      &__block {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        &__item {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}
