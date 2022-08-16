@@ -30,10 +30,9 @@ const Registaration = () => {
   const navigate = useNavigate();
   const {
     register,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     getValues,
     handleSubmit,
-    reset,
   } = useForm<Registration>();
 
   const registrationSubmitHandler: SubmitHandler<Registration> = ({ email, name, password }, e) => {
