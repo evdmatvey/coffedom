@@ -127,7 +127,7 @@ const UserPresetCard: React.FC<UserPresetCardProps> = ({ preset, setPresets, pre
       </div>
       <div className={styles.products}>
         {products.map((product) => (
-          <PresetsProductSmallCard key={product.id} product={product} />
+          <PresetsProductSmallCard key={product._id} product={product} />
         ))}
       </div>
       <div className={styles.bottom}>

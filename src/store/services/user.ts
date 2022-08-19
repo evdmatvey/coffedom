@@ -3,20 +3,34 @@ import { User } from '../../types/User';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/users' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'http://localhost:5000/api/users',
+    prepareHeaders: (headers) => {
+      const token = window.localStorage.getItem('token') || '';
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
       query: () => `/`,
     }),
-    getUserByEmailAndPassword: builder.mutation({
-      query: ({ email, password }) => ({
-        url: `/?email_like=${email}&password_like=${password}`,
-        method: 'GET',
+    getUserByToken: builder.query<User, void>({
+      query: () => '/auth',
+    }),
+    authUser: builder.mutation({
+      query: (user) => ({
+        url: '/auth',
+        method: 'POST',
+        body: user,
       }),
     }),
     addUser: builder.mutation({
       query: (user) => ({
-        url: '/',
+        url: '/reg',
         method: 'POST',
         body: user,
       }),
@@ -24,5 +38,5 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetUsersQuery, useAddUserMutation, useGetUserByEmailAndPasswordMutation } =
+export const { useGetUsersQuery, useAddUserMutation, useAuthUserMutation, useGetUserByTokenQuery } =
   userApi;

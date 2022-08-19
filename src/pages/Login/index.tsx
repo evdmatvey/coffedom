@@ -7,7 +7,7 @@ import PasswordInput from '../../components/UI/PasswordInput';
 import TextFiled from '../../components/UI/TextField';
 import { toastOptions } from '../../helpers';
 import { useAppDispatch } from '../../hooks';
-import { useGetUserByEmailAndPasswordMutation, useGetUsersQuery } from '../../store/services/user';
+import { useAuthUserMutation, useGetUsersQuery } from '../../store/services/user';
 import { setUser } from '../../store/slices/userSlice';
 
 import './Login.scss';
@@ -22,23 +22,28 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { data: users } = useGetUsersQuery();
-  const [getUserByEmailAndPassword] = useGetUserByEmailAndPasswordMutation();
+  const [authUser] = useAuthUserMutation();
 
   const {
     register,
-    formState: { errors, isSubmitSuccessful },
-    getValues,
-    reset,
+    formState: { errors },
     handleSubmit,
+    setError,
   } = useForm<LoginData>();
 
   const loginSubmitHandler: SubmitHandler<LoginData> = (data, e) => {
-    e?.target.reset();
-    getUserByEmailAndPassword(data)
+    authUser(data)
       .unwrap()
-      .then((data) => dispatch(setUser(data[0])));
-    toast.success('Вы успешно вошли в аккаунт', toastOptions);
-    navigate('/');
+      .then((data) => {
+        dispatch(setUser(data.userData));
+        window.localStorage.setItem('token', data.token);
+        e?.target.reset();
+        toast.success('Вы успешно вошли в аккаунт', toastOptions);
+        navigate('/');
+      })
+      .catch((err) => {
+        setError('password', { message: err.data.message });
+      });
   };
 
   return (
@@ -70,12 +75,6 @@ const Login = () => {
               register={{
                 ...register('password', {
                   required: 'Введите ваш пароль',
-                  validate: (value) =>
-                    (users &&
-                      users.find(
-                        (user) => user.password === value && getValues('email') === user.email,
-                      )?.password === value) ||
-                    'Неверный логин или пароль',
                 }),
               }}
               placeholder="Введите пароль..."

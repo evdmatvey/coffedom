@@ -4,7 +4,7 @@ interface SettingsItem {
 }
 
 export interface Product {
-  id: number;
+  _id: number;
   title: string;
   imageUrl: string;
   categoryId: number;

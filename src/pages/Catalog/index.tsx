@@ -34,7 +34,7 @@ const Catalog = () => {
   const productItems =
     products &&
     products.map((product) => (
-      <ProductCard key={product.id} activeItem={activeSize} product={product} />
+      <ProductCard key={product._id} activeItem={activeSize} product={product} />
     ));
   const notFoundProducts = products && products.length === 0 && (
     <div className="catalog__notfound">Таких товаров нет 😕</div>

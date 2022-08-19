@@ -3,7 +3,7 @@ import { Preset } from '../../types/Preset';
 
 export const presetsApi = createApi({
   reducerPath: 'presetsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/presets' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/presets' }),
   endpoints: (builder) => ({
     getPresets: builder.query<Preset[], void>({
       query: () => `/`,

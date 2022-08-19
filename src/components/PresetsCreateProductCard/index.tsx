@@ -16,7 +16,7 @@ const PresetsCreateProductCard: React.FC<PresetsCreateProductCardProps> = ({
   selectedProducts,
   setSelectedProducts,
 }) => {
-  const { imageUrl, price: initialPrice, settings, title, id } = product;
+  const { imageUrl, price: initialPrice, settings, title, _id } = product;
   const { sizes } = settings;
 
   const [totalPrice, setTotalPrice] = React.useState(initialPrice);
@@ -31,9 +31,9 @@ const PresetsCreateProductCard: React.FC<PresetsCreateProductCardProps> = ({
   const addProductHandler = () => {
     const size = activeSize;
     const price = totalPrice;
-    const selectedProduct: SelectedProduct = { id, title, imageUrl, price, size, amount };
+    const selectedProduct: SelectedProduct = { _id, title, imageUrl, price, size, amount };
     const newSelectedProduct = selectedProducts.find(
-      (product) => product.size === size && product.id === id,
+      (product) => product.size === size && product._id === _id,
     );
 
     if (newSelectedProduct) {

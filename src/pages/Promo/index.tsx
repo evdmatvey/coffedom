@@ -18,7 +18,7 @@ const Promo = () => {
       </div>
       <div className="container">
         <div className="promo__wrapper">
-          {promos && promos.map((promo) => <PromoItemCard key={promo.id} promo={promo} />)}
+          {promos && promos.map((promo) => <PromoItemCard key={promo._id} promo={promo} />)}
         </div>
       </div>
     </div>

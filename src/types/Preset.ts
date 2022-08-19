@@ -1,16 +1,16 @@
 interface PresetProduct {
-  id: number;
+  _id: number;
   title: string;
   imageUrl: string;
-  count: number;
+  amount: number;
   size: string;
+  price: number;
 }
 
 export interface Preset {
-  id: number;
+  _id: number;
   title: string;
   popular: boolean;
   ordinary: { items: PresetProduct[]; price: number };
   big: { items: PresetProduct[]; price: number };
-  amount: number[][];
 }

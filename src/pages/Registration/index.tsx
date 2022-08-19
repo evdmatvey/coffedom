@@ -41,7 +41,10 @@ const Registaration = () => {
     navigate('/');
     addUser({ email, name, password })
       .unwrap()
-      .then((data: User) => dispatch(setUser(data)));
+      .then((data: { userData: User; token: string }) => {
+        dispatch(setUser(data.userData));
+        window.localStorage.setItem('token', data.token);
+      });
   };
 
   return (

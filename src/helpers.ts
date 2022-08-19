@@ -33,9 +33,9 @@ export const getAutoOrderDays = (id: number) =>
 
 export const checkTime = (time: string) => /^(?:\d|[01]\d|2[0-3]):[0-5]\d$/.test(time);
 
-export const getProductsAmountByType = (prodcuts: SelectedProduct[] | []) => {
+export const getProductsAmountByType = (products: SelectedProduct[] | []) => {
   let totalAmount = [0, 0];
-  prodcuts.forEach((product) =>
+  products.forEach((product) =>
     product.size.includes('мл')
       ? (totalAmount[0] += product.amount)
       : (totalAmount[1] += product.amount),

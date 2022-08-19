@@ -1,5 +1,6 @@
 import React from 'react';
 import { Preset } from '../../types/Preset';
+import { getProductsAmountByType } from '../../helpers';
 
 import styles from './PresetCard.module.scss';
 
@@ -8,10 +9,11 @@ interface PresetCardProps {
 }
 
 const PresetCard: React.FC<PresetCardProps> = ({ preset }) => {
-  const { amount, ordinary, popular, title, big } = preset;
+  const { ordinary, popular, title, big } = preset;
   const [activeVariant, setActiveVariant] = React.useState('ordinary');
   const [activeChoice, setActiveChoice] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(ordinary.price);
+  const [amount, setAmount] = React.useState(['0 снэков', '0 напитков']);
 
   const setActiveChoiceHandler = (choice: number, variant: string) => {
     setActiveChoice(choice);
@@ -23,6 +25,11 @@ const PresetCard: React.FC<PresetCardProps> = ({ preset }) => {
       setTotalPrice(ordinary.price);
     }
   };
+
+  React.useEffect(() => {
+    const selectedProducts = activeChoice === 0 ? ordinary.items : big.items;
+    setAmount(getProductsAmountByType(selectedProducts));
+  }, [activeChoice]);
 
   return (
     <div className={styles.card}>
@@ -40,9 +47,7 @@ const PresetCard: React.FC<PresetCardProps> = ({ preset }) => {
               fill="#A3A3A3"
             />
           </svg>
-          <span>
-            {amount[activeChoice][0]} {amount[activeChoice][0] > 4 ? 'напитков' : 'напитка'}
-          </span>
+          <span>{amount && amount[0]}</span>
           <svg
             width="24"
             height="24"
@@ -54,9 +59,7 @@ const PresetCard: React.FC<PresetCardProps> = ({ preset }) => {
               fill="#A3A3A3"
             />
           </svg>
-          <span>
-            {amount[activeChoice][1]} {amount[activeChoice][1] > 4 ? 'снэков' : 'снэка'}
-          </span>
+          <span>{amount && amount[1]}</span>
         </div>
       </div>
       <div className={styles.choice}>
@@ -74,19 +77,19 @@ const PresetCard: React.FC<PresetCardProps> = ({ preset }) => {
       <div className={styles.products}>
         {activeVariant === 'ordinary' &&
           ordinary.items.map((item) => (
-            <div key={item.id} className={styles.item}>
+            <div key={item._id} className={styles.item}>
               <img src={item.imageUrl} alt="item" />
               <h5>{item.title}</h5>
-              <p>x{item.count}</p>
+              <p>x{item.amount}</p>
               <span>{item.size}</span>
             </div>
           ))}
         {activeVariant === 'big' &&
           big.items.map((item) => (
-            <div key={item.id} className={styles.item}>
+            <div key={item._id} className={styles.item}>
               <img src={item.imageUrl} alt="item" />
               <h5>{item.title}</h5>
-              <p>x{item.count}</p>
+              <p>x{item.amount}</p>
               <span>{item.size}</span>
             </div>
           ))}

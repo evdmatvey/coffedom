@@ -1,5 +1,5 @@
 export interface Promo {
-  id: number;
+  _id: number;
   title: string;
   text: string;
   imageUrl: string;

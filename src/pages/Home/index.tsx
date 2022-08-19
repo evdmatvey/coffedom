@@ -109,7 +109,7 @@ const Home = () => {
         <div className="container">
           <Title title="Акции" link="Акции" to="/promo" />
           <div className="promo-block__wrapper">
-            {promos && promos.map((promo) => <PromoCard key={promo.id} promo={promo} />)}
+            {promos && promos.map((promo) => <PromoCard key={promo._id} promo={promo} />)}
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@ const Home = () => {
         <div className="container">
           <Title title="Готовые наборы" link="Наборы" to="/presets" />
           <div className="presets-block__wrapper">
-            {presets && presets.map((preset) => <PresetCard key={preset.id} preset={preset} />)}
+            {presets && presets.map((preset) => <PresetCard key={preset._id} preset={preset} />)}
           </div>
         </div>
       </div>

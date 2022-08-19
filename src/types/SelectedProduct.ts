@@ -1,5 +1,5 @@
 export interface SelectedProduct {
-  id: number;
+  _id: number;
   title: string;
   imageUrl: string;
   amount: number;

@@ -31,7 +31,7 @@ const CatalogSlider: React.FC<CatalogSliderProps> = ({ products }) => {
         autoplay={{ delay: 7000, disableOnInteraction: true }}
         freeMode={true}>
         {products.map((product) => (
-          <SwiperSlide key={product.id}>
+          <SwiperSlide key={product._id}>
             <ProductCard product={product} />
           </SwiperSlide>
         ))}

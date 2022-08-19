@@ -72,7 +72,7 @@ const MyPresetsCreate = () => {
     }
 
     addUserPreset({
-      userId: user?.id,
+      userId: user?._id,
       title: presetData.title,
       products: selectedProducts,
       price: totalPrice,
@@ -156,7 +156,7 @@ const MyPresetsCreate = () => {
               {selectedProducts.length > 0 ? (
                 selectedProducts.map((product) => (
                   <PresetsCreateProductCardSmall
-                    key={`${product.id}${product.size}`}
+                    key={`${product._id}${product.size}`}
                     product={product}
                     selectedProducts={selectedProducts}
                     setSelectedProducts={setSelectedProducts}
@@ -226,7 +226,7 @@ const MyPresetsCreate = () => {
               {products &&
                 products.map((product) => (
                   <PresetsCreateProductCard
-                    key={product.id}
+                    key={product._id}
                     product={product}
                     selectedProducts={selectedProducts}
                     setSelectedProducts={setSelectedProducts}
