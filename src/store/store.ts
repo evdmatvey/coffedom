@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { adressApi } from './services/adress';
+import { addressApi } from './services/address';
 import { presetsApi } from './services/presets';
 import { productApi } from './services/product';
 import { promoApi } from './services/promo';
@@ -12,7 +12,7 @@ export const store = configureStore({
     [productApi.reducerPath]: productApi.reducer,
     [promoApi.reducerPath]: promoApi.reducer,
     [presetsApi.reducerPath]: presetsApi.reducer,
-    [adressApi.reducerPath]: adressApi.reducer,
+    [addressApi.reducerPath]: addressApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [userPresetsApi.reducerPath]: userPresetsApi.reducer,
     user: userSlice,
@@ -22,7 +22,7 @@ export const store = configureStore({
       .concat(productApi.middleware)
       .concat(promoApi.middleware)
       .concat(presetsApi.middleware)
-      .concat(adressApi.middleware)
+      .concat(addressApi.middleware)
       .concat(userApi.middleware)
       .concat(userPresetsApi.middleware),
 });

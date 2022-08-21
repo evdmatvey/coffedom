@@ -1,5 +1,6 @@
 import { ToastOptions } from 'react-toastify';
 import { SelectedProduct } from './types/SelectedProduct';
+import { City } from './types/Address';
 
 export const getSort = (sort: number) => (sort === 0 ? 'rating' : sort === 1 ? 'title' : 'price');
 export const getCategory = (category: number) => (category === 0 ? '1|2' : category);
@@ -71,4 +72,36 @@ export const toastOptions: ToastOptions<{}> | undefined = {
   draggable: true,
   theme: 'dark',
   progress: undefined,
+};
+
+export const getValidCitiesList: (
+  cities: { _id: string; text: string }[],
+) => { id: number; text: string }[] = (cities) => {
+  let validCityList: { id: number; text: string }[] = [];
+
+  cities.forEach((city, index) => validCityList.push({ id: index, text: city.text }));
+
+  return validCityList;
+};
+
+export const getValidAddressesList: (
+  addresses: {
+    _id: string;
+    cityId: string;
+    text: string;
+    desc: { phone: string; status: string; workTime: string };
+  }[],
+) => { id: number; text: string }[] = (addresses) => {
+  let validCityList: {
+    id: number;
+    text: string;
+  }[] = [];
+
+  addresses.forEach((address, index) => validCityList.push({ id: index, text: address.text }));
+
+  return validCityList;
+};
+
+export const getCityIdByIndex: (index: number, cities: City[]) => string = (index, cities) => {
+  return cities[index]._id;
 };

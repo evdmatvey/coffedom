@@ -1,24 +1,45 @@
 import React from 'react';
-import { getFormattedPhoneNumber } from '../../helpers';
 import {
-  useGetAdressesQuery,
-  useGetCitiesQuery,
-  useGetShopsQuery,
-} from '../../store/services/adress';
+  getCityIdByIndex,
+  getFormattedPhoneNumber,
+  getValidAddressesList,
+  getValidCitiesList,
+} from '../../helpers';
+import { useGetAddressesMutation, useGetCitiesQuery } from '../../store/services/address';
+import { Address } from '../../types/Address';
 import Dropdown from '../UI/Dropdown';
+import DropdownLoader from '../UI/Dropdown/DropdownLoader';
 
 import styles from './Contacts.module.scss';
 
 const Contacts = () => {
-  const [activeCity, setActiveCity] = React.useState(0);
+  const [getAddresses] = useGetAddressesMutation();
   const { data: cities } = useGetCitiesQuery();
-  const { data: addresses } = useGetAdressesQuery(`id=${activeCity}`);
-  const [activeaddress, setActiveaddress] = React.useState(0);
-  const [activeItem, setActiveItem] = React.useState(0);
+  const [addresses, setAddresses] = React.useState<Address[]>([]);
+  const [activeCity, setActiveCity] = React.useState(0);
+  const [activeAddress, setActiveAddress] = React.useState(0);
+  const [citiesList, setCitiesList] = React.useState<{ id: number; text: string }[]>([]);
+  const [addressesList, setAddressesList] = React.useState<{ id: number; text: string }[]>([]);
+  const [shop, setShop] = React.useState<{
+    phone: string;
+    status: string;
+    workTime: string;
+  }>();
 
-  const { data: shops } = useGetShopsQuery(`id=${activeItem}`);
+  React.useEffect(() => {
+    if (cities) {
+      getAddresses(getCityIdByIndex(activeCity, cities))
+        .unwrap()
+        .then((data) => {
+          setAddresses(data);
+          setAddressesList(getValidAddressesList(data));
+          setShop(data[activeAddress].desc);
+        });
+      setCitiesList(getValidCitiesList(cities));
+    }
+  }, [activeCity, cities, activeAddress]);
 
-  const shop = shops && shops[0];
+  console.log(shop);
 
   return (
     <div className={styles.contacts}>
@@ -106,29 +127,31 @@ const Contacts = () => {
       </div>
       <div className={styles.info}>
         <div className={styles.select}>
-          {cities && (
+          {citiesList.length ? (
             <Dropdown
               activeElement={activeCity}
-              items={cities}
+              items={citiesList}
               setActiveElement={setActiveCity}
               isCitiesDropdown
               isDropdownLg
             />
+          ) : (
+            <DropdownLoader />
           )}
-          {addresses && (
+          {addressesList.length ? (
             <Dropdown
-              activeElement={activeaddress}
-              items={addresses[0].items}
-              setActiveElement={setActiveaddress}
+              activeElement={activeAddress}
+              items={addressesList}
+              setActiveElement={setActiveAddress}
               isDropdownLg
-              setActiveItem={setActiveItem}
             />
+          ) : (
+            <DropdownLoader />
           )}
         </div>
         <div className={styles.desc}>
           <h2>
-            {cities && cities[activeCity].text}{' '}
-            {addresses && addresses[0].items[activeaddress].text}
+            {cities && cities[activeCity].text}, {addresses.length && addresses[activeAddress].text}
           </h2>
           {shop && (
             <ul>
@@ -147,7 +170,7 @@ const Contacts = () => {
                   </svg>
                   Телефон:
                 </span>
-                <a href={`tel:${shop.desc.phone}`}>{getFormattedPhoneNumber(shop.desc.phone)}</a>
+                <a href={`tel:${shop.phone}`}>{getFormattedPhoneNumber(shop.phone)}</a>
               </li>
               <li>
                 <span>
@@ -164,7 +187,7 @@ const Contacts = () => {
                   </svg>
                   Статус:
                 </span>
-                {shop.desc.status}
+                {shop.status}
               </li>
               <li>
                 <span>
@@ -181,7 +204,7 @@ const Contacts = () => {
                   </svg>
                   Время работы:
                 </span>
-                {shop.desc.workTime}
+                {shop.workTime}
               </li>
             </ul>
           )}

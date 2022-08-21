@@ -1,5 +1,5 @@
 import React from 'react';
-import { City } from '../../../types/Adress';
+import { City } from '../../../types/Address';
 
 import styles from './Dropdown.module.scss';
 
