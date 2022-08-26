@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Breadcrumb from "../../components/UI/Breadcrumb";
-import svg from "../../assets/img/Basket/Vector.svg";
-import "./Basket.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Breadcrumb from '../../components/UI/Breadcrumb';
+import svg from '../../assets/img/Basket/Vector.svg';
+import './Basket.scss';
 
 const Basket = () => {
   return (
     <div className="basket">
       <div className="basket__top">
         <div className="container">
-          <Breadcrumb elements={[["Главная", "/"]]} current="Корзина" />
+          <Breadcrumb elements={[['Главная', '/']]} current="Корзина" />
           <h1>Корзина</h1>
         </div>
         <div className="container">

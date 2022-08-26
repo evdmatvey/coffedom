@@ -25,7 +25,6 @@ const Registaration = () => {
   const { data: users } = useGetUsersQuery();
   const [addUser] = useAddUserMutation();
   const dispatch = useAppDispatch();
-  console.log(users);
 
   const navigate = useNavigate();
   const {

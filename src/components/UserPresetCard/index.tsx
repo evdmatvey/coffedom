@@ -25,7 +25,7 @@ interface UserPresetCardProps {
 }
 
 const UserPresetCard: React.FC<UserPresetCardProps> = ({ preset, setPresets, presets }) => {
-  const { title, auto, day, price, products, time, id } = preset;
+  const { title, auto, day, price, products, time, _id } = preset;
   const [updateUserPreset] = useUpdateUserPresetMutation();
   const [deleteUserPreset] = useDeleteUserPresetMutation();
   const [drinksAmount, snaksAmount] = getProductsAmountByType(products);
@@ -51,7 +51,7 @@ const UserPresetCard: React.FC<UserPresetCardProps> = ({ preset, setPresets, pre
   const updateUserPresetHandler = () => {
     if (checkTime(autoSettings.time)) {
       const changes = { auto: 1, day: autoSettings.day, time: autoSettings.time };
-      updateUserPreset({ id, changes });
+      updateUserPreset({ _id, changes });
       setAutoSettings({ ...autoSettings, auto: 1 });
       closePopupHandler();
     } else {
@@ -60,14 +60,14 @@ const UserPresetCard: React.FC<UserPresetCardProps> = ({ preset, setPresets, pre
   };
 
   const deleteUserPresetHandler = () => {
-    deleteUserPreset(id);
-    setPresets([...presets.filter((item) => item.id !== id)]);
+    deleteUserPreset(_id);
+    setPresets([...presets.filter((item) => item._id !== _id)]);
     closePopupHandler();
   };
 
   const removeAutoHandler = () => {
     const changes = { auto: 0, day: 0, time: '' };
-    updateUserPreset({ id, changes });
+    updateUserPreset({ _id, changes });
     setAutoSettings(changes);
     closePopupHandler();
   };

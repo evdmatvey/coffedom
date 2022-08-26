@@ -105,3 +105,7 @@ export const getValidAddressesList: (
 export const getCityIdByIndex: (index: number, cities: City[]) => string = (index, cities) => {
   return cities[index]._id;
 };
+
+export const isUserAddressValid: (address: string) => boolean = (address) => {
+  return /^([а-я0-9.\s]+,)([0-9\s]+,)([0-9\s]+){1}$/i.test(address);
+};

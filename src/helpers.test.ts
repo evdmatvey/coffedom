@@ -1,4 +1,9 @@
-import { getValidCitiesList, getValidAddressesList, getCityIdByIndex } from './helpers';
+import {
+  getValidCitiesList,
+  getValidAddressesList,
+  getCityIdByIndex,
+  isUserAddressValid,
+} from './helpers';
 
 describe('getValidCitiesList', () => {
   test('Один город', () => {
@@ -99,5 +104,17 @@ describe('getCityIdByIndex', () => {
         },
       ]),
     ).toBe('6301fa4914354bb88bdcf62c');
+  });
+});
+
+describe('isUserAddressValid', () => {
+  test('Корректный адрес', () => {
+    expect(isUserAddressValid('ул. Пушкина,12,32')).toBe(true);
+  });
+  test('Не корректный адрес', () => {
+    expect(isUserAddressValid('ул. Пушкина, дом 12 кв. 32')).toBe(false);
+  });
+  test('Не корректный адрес', () => {
+    expect(isUserAddressValid('12')).toBe(false);
   });
 });

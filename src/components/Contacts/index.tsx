@@ -39,8 +39,6 @@ const Contacts = () => {
     }
   }, [activeCity, cities, activeAddress]);
 
-  console.log(shop);
-
   return (
     <div className={styles.contacts}>
       <div className={styles.links}>
@@ -136,7 +134,7 @@ const Contacts = () => {
               isDropdownLg
             />
           ) : (
-            <DropdownLoader />
+            <DropdownLoader lg />
           )}
           {addressesList.length ? (
             <Dropdown
@@ -146,7 +144,7 @@ const Contacts = () => {
               isDropdownLg
             />
           ) : (
-            <DropdownLoader />
+            <DropdownLoader lg />
           )}
         </div>
         <div className={styles.desc}>

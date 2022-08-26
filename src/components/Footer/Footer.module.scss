@@ -83,25 +83,6 @@
     align-items: flex-end;
   }
 
-  input {
-    width: 415px;
-    padding: 11px 20px;
-    background-color: transparent;
-    border: 1px solid #2fd9b9;
-    border-radius: 8px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 19px;
-    color: #ddd;
-
-    &::placeholder {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 19px;
-      color: #a3a3a3;
-    }
-  }
-
   textarea {
     width: 415px;
     height: 80px;
@@ -120,26 +101,6 @@
       font-size: 14px;
       line-height: 19px;
       color: #a3a3a3;
-    }
-  }
-
-  button {
-    width: 200px;
-    padding: 9px 20px;
-    border: 1px solid #2fd9b9;
-    border-radius: 8px;
-    background: transparent;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-
-    &:hover {
-      background-color: #2fd9b9;
-      color: #202020;
     }
   }
 }

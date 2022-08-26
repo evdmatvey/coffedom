@@ -19,10 +19,14 @@ export const userSlice = createSlice({
       state.user = action.payload;
       state.isAuth = true;
     },
+    removeUser: (state) => {
+      state.user = initialState.user;
+      state.isAuth = initialState.isAuth;
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, removeUser } = userSlice.actions;
 export const selectUser = (state: RootState) => state.user.user;
 export const selectUserId = (state: RootState) => state.user.user?._id;
 export const selectAuthState = (state: RootState) => state.user.isAuth;

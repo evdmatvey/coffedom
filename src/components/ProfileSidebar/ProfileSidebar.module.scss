@@ -1,0 +1,39 @@
+.sidebar {
+  width: 300px;
+  padding: 30px;
+  background: #202020;
+  border-radius: 12px;
+  position: relative;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ffffff;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      color: #2fd9b9;
+    }
+  }
+}
+
+.buttons {
+  width: 240px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

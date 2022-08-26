@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './Footer.module.scss';
 import TextFiled from '../UI/TextField';
 import { toastOptions } from '../../helpers';
+import Button from '../UI/Button';
 
 type Message = {
   email: string;
@@ -210,7 +211,7 @@ const Footer = () => {
                   errorMessage={errors.email?.message}
                 />
                 <textarea {...register('text')} placeholder="Кратко опишите проблему.."></textarea>
-                <button type="submit">Отправить</button>
+                <Button roleType="submit" text="Отправить" variant="sm" type="basic" />
               </form>
             </div>
           </div>

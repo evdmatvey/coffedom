@@ -1,0 +1,62 @@
+.button {
+  height: 40px;
+  padding: 0 20px;
+  background: transparent;
+  transition: all 0.15s ease-in-out;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.sm {
+  width: 160px;
+}
+
+.md {
+  width: 180px;
+}
+
+.lg {
+  width: 200px;
+}
+
+.full {
+  width: 100%;
+}
+
+.basic {
+  border: 1px solid #2fd9b9;
+  color: #ffffff;
+
+  &:hover {
+    color: #202020;
+    background: #2fd9b9;
+  }
+
+  &:disabled {
+    border-color: #a3a3a3;
+    color: #a3a3a3;
+
+    &:hover {
+      border-color: #a3a3a3;
+      color: #a3a3a3;
+      background: transparent;
+      cursor: auto;
+    }
+  }
+}
+
+.secondary {
+  border: 1px solid #a3a3a3;
+  color: #a3a3a3;
+
+  &:hover {
+    border-color: #eee;
+    color: #eee;
+  }
+}

@@ -3,17 +3,27 @@ import { UserPreset } from '../../types/UserPreset';
 
 export const userPresetsApi = createApi({
   reducerPath: 'userPresetsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/users-presets' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'http://localhost:5000/api/user-presets',
+    prepareHeaders: (headers) => {
+      const token = window.localStorage.getItem('token') || '';
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
-    getUserPresets: builder.mutation<UserPreset[], number>({
-      query: (id) => ({
-        url: `?userId_like=${id}`,
+    getUserPresets: builder.mutation<UserPreset[], void>({
+      query: () => ({
+        url: '/',
         method: 'GET',
       }),
     }),
     addUserPreset: builder.mutation({
       query: (preset) => ({
-        url: '',
+        url: '/',
         method: 'POST',
         body: preset,
       }),

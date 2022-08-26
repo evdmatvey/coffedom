@@ -19,7 +19,7 @@ const MyPresets = () => {
 
   React.useEffect(() => {
     if (user) {
-      getUserPresets(user._id)
+      getUserPresets()
         .unwrap()
         .then((data) => setUserPresets(data));
     } else {
@@ -57,7 +57,7 @@ const MyPresets = () => {
             <div className="my-presets__items">
               {userPresets.map((preset) => (
                 <UserPresetCard
-                  key={preset.id}
+                  key={preset._id}
                   preset={preset}
                   presets={userPresets}
                   setPresets={setUserPresets}

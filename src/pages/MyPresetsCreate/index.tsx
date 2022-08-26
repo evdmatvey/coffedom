@@ -22,6 +22,7 @@ import {
 } from '../../helpers';
 
 import './MyPresetsCreate.scss';
+import Button from '../../components/UI/Button';
 
 const MyPresetsCreate = () => {
   const isAuth = useAppSelector(selectAuthState);
@@ -170,12 +171,13 @@ const MyPresetsCreate = () => {
               <div className="presets-create__preset-price">
                 {totalPrice} <span>₽</span>
               </div>
-              <button
-                className="presets-create__preset-button"
+              <Button
+                onClick={addToCartHandler}
+                text="Сохранить"
+                type="basic"
+                variant="md"
                 disabled={selectedProducts.length === 0}
-                onClick={addToCartHandler}>
-                Сохранить
-              </button>
+              />
             </div>
           </div>
           <div className="presets-create__settings">

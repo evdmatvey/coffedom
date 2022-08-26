@@ -14,6 +14,8 @@ import Registration from './pages/Registration';
 import { useAppDispatch } from './hooks';
 import { useGetUserByTokenQuery } from './store/services/user';
 import { setUser } from './store/slices/userSlice';
+import Profile from './pages/Profile';
+import ProfileSettings from './components/ProfileSettings';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -38,6 +40,9 @@ const App = () => {
         <Route path="/basket" element={<Basket />} />
         <Route path="/my-presets" element={<MyPresets />} />
         <Route path="/my-presets/create" element={<MyPresetsCreate />} />
+        <Route path="/profile" element={<Profile />}>
+          <Route index element={<ProfileSettings />} />
+        </Route>
       </Routes>
       <Footer />
     </div>
