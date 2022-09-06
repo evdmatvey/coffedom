@@ -1,10 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CartCard } from "../../components/Cart/CartItem";
+import CartPay from "../../components/CartPay/CartPay";
 import Breadcrumb from "../../components/UI/Breadcrumb";
-import svg from "../../assets/img/Basket/Vector.svg";
+import { useAppSelector } from "../../hooks";
+import { CartItem } from "../../types/Cart";
 import "./Basket.scss";
 
 const Basket = () => {
+  const data = useAppSelector((state) => state.cart.items);
+  const [cartItems, setCartItems] = React.useState<CartItem[]>([]);
+
+  React.useEffect(() => {
+    setCartItems(data);
+  }, [data]);
+
   return (
     <div className="basket">
       <div className="basket__top">
@@ -34,16 +44,19 @@ const Basket = () => {
             <div className="basket__main__flex">
               <div className="basket__main__list">
                 <div className="basket__main__list__block">
-                  <div className="basket__main__list__block__item"></div>
-                  <div className="basket__main__list__block__item"></div>
-                  <div className="basket__main__list__block__item"></div>
+                  {cartItems.length &&
+                    cartItems.map((item) => (
+                      <div className="basket__main__list__block__item">
+                        <CartCard key={item._id} item={item} />
+                      </div>
+                    ))}
                 </div>
               </div>
               <div className="basket__main__pay">
                 <div className="img">
                   <h1>Оплата</h1>
                 </div>
-                <div className="basket__main__pay__block"></div>
+                <CartPay items={data} />
               </div>
             </div>
           </div>
@@ -54,3 +67,5 @@ const Basket = () => {
 };
 
 export default Basket;
+
+//#A3A3A3;

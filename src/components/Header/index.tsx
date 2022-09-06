@@ -60,7 +60,7 @@ const Header = () => {
                 </div>
                 {user && user.name}
               </Link>
-              <Link to="/basket">
+              <Link to="/cart">
                 <div className="header__user-icon">
                   <svg
                     width="24"

@@ -1,11 +1,13 @@
-import React from 'react';
-import { toast } from 'react-toastify';
-import { toastOptions } from '../../helpers';
-import { useAppSelector } from '../../hooks';
-import { selectAuthState } from '../../store/slices/userSlice';
-import { Product } from '../../types/Product';
-
-import styles from './ProductCard.module.scss';
+import React from "react";
+import { toast } from "react-toastify";
+import { toastOptions } from "../../helpers";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useUpdateProductToCartMutation } from "../../store/services/cart";
+import { selectAuthState } from "../../store/slices/userSlice";
+import { Product } from "../../types/Product";
+import styles from "./ProductCard.module.scss";
+import { getSettingsNameByIndex } from "../../helpers";
+import { updateCart } from "../../store/slices/cartSlice";
 
 interface ProductCardProps {
   product: Product;
@@ -13,7 +15,9 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
+  const dispatch = useAppDispatch();
   const isAuth = useAppSelector(selectAuthState);
+  const cartItems = useAppSelector((state) => state.cart.items);
 
   let size = activeItem ? activeItem - 1 : 0;
 
@@ -28,11 +32,34 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
   const [activeIngredient, setActiveIngredient] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
-  const addToCartHandler = () => {
-    if (isAuth) {
+  const [appProductToBag] = useUpdateProductToCartMutation();
+
+  const addToCartHandler = async () => {
+    if (isAuth && totalPrice) {
       setCount(count + 1);
+
+      await appProductToBag({
+        items: [
+          ...cartItems,
+          {
+            amount: count + 1,
+            settings: [
+              getSettingsNameByIndex(activeMilk, "milk", settings),
+              getSettingsNameByIndex(activeSize, "sizes", settings),
+              getSettingsNameByIndex(activeIngredient, "ingredients", settings),
+            ],
+            price: totalPrice,
+            title: product.title,
+            imageUrl: product.imageUrl,
+          },
+        ],
+      })
+        .unwrap()
+        .then((data) => {
+          dispatch(updateCart(data));
+        });
     } else {
-      toast.error('Войдите или зарегистрируйтесь', toastOptions);
+      toast.error("Войдите или зарегистрируйтесь", toastOptions);
     }
   };
 
@@ -57,8 +84,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
           {settings.milk.map((milkElem, index) => (
             <li
               key={milkElem.name}
-              className={index === activeMilk ? styles.active : ''}
-              onClick={() => setActiveMilk(index)}>
+              className={index === activeMilk ? styles.active : ""}
+              onClick={() => setActiveMilk(index)}
+            >
               {milkElem.name}
             </li>
           ))}
@@ -67,8 +95,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
           {settings.sizes.map((size, index) => (
             <li
               key={size.name}
-              className={index === activeSize ? styles.active : ''}
-              onClick={() => setActiveSize(index)}>
+              className={index === activeSize ? styles.active : ""}
+              onClick={() => setActiveSize(index)}
+            >
               {size.name}
             </li>
           ))}
@@ -77,8 +106,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
           {settings.ingredients.map((ingredient, index) => (
             <li
               key={ingredient.name}
-              className={index === activeIngredient ? styles.active : ''}
-              onClick={() => setActiveIngredient(index)}>
+              className={index === activeIngredient ? styles.active : ""}
+              onClick={() => setActiveIngredient(index)}
+            >
               {ingredient.name}
             </li>
           ))}
@@ -89,7 +119,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, activeItem }) => {
           {totalPrice}
           <span>₽</span>
         </div>
-        <button onClick={addToCartHandler}>В корзину {count > 0 && <span>{count}</span>}</button>
+        <button onClick={addToCartHandler}>
+          В корзину {count > 0 && <span>{count}</span>}
+        </button>
       </div>
     </div>
   );

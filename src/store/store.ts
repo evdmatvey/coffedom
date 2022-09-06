@@ -1,11 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { addressApi } from './services/address';
-import { presetsApi } from './services/presets';
-import { productApi } from './services/product';
-import { promoApi } from './services/promo';
-import { userApi } from './services/user';
-import { userPresetsApi } from './services/userPresets';
-import userSlice from './slices/userSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { addressApi } from "./services/address";
+import { cartApi } from "./services/cart";
+import { presetsApi } from "./services/presets";
+import { productApi } from "./services/product";
+import { promoApi } from "./services/promo";
+import { userApi } from "./services/user";
+import { userPresetsApi } from "./services/userPresets";
+import cartSlice from "./slices/cartSlice";
+import userSlice from "./slices/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +17,9 @@ export const store = configureStore({
     [addressApi.reducerPath]: addressApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [userPresetsApi.reducerPath]: userPresetsApi.reducer,
+    [cartApi.reducerPath]: cartApi.reducer,
     user: userSlice,
+    cart: cartSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -24,7 +28,8 @@ export const store = configureStore({
       .concat(presetsApi.middleware)
       .concat(addressApi.middleware)
       .concat(userApi.middleware)
-      .concat(userPresetsApi.middleware),
+      .concat(userPresetsApi.middleware)
+      .concat(cartApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

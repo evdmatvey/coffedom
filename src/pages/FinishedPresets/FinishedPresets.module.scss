@@ -1,0 +1,33 @@
+.preset {
+  min-height: calc(100vh - 277px);
+  margin: 0;
+  padding: 0;
+}
+
+.img {
+  background: url(../../assets/img/ready-made-kits.jpg) no-repeat center / cover;
+  height: 218px;
+  padding-left: 20px;
+  padding-top: 100px;
+
+  .container {
+    width: 1440px;
+  }
+}
+
+h1 {
+  margin-top: 20px;
+  color: #2fd9b9;
+}
+
+.block {
+  width: 1440px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  margin: 0 auto;
+}

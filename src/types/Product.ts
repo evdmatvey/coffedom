@@ -1,4 +1,4 @@
-interface SettingsItem {
+export interface SettingsItem {
   name: string;
   price: number;
 }
